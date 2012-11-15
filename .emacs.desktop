@@ -1,0 +1,72 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Mon May 14 02:34:54 2012
+;; Desktop file format version 206
+;; Emacs version 23.1.1
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '("profile" "92" "textbf" "size" "centers" "center1" "4" "optimum" "missed" "m" "missed" "miss" "mis" "miss" "missed" "miss"))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/kishore/Dropbox/KishoreBTP/wi12/kishorePawanWI12.tex"
+  "kishorePawanWI12.tex"
+  'latex-mode
+  '(auto-complete-mode)
+  30618
+  '(27123 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/kishore/Dropbox/KishoreBTP/btp/recursiveClustering.r"
+  "recursiveClustering.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  6016
+  '(5513 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/kishore/Dropbox/KishoreBTP/wi12/kishorePawanWI12_backup.tex"
+  "kishorePawanWI12_backup.tex"
+  'latex-mode
+  nil
+  10155
+  '(7 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/kishore/Dropbox/KishoreBTP/btp/clusterCall.sql"
+  "clusterCall.sql"
+  'sql-mode
+  nil
+  335
+  '(335 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/kishore/Dropbox/KishoreBTP/btp/clusterNew.R"
+  "clusterNew.R"
+  'ess-mode
+  '(ess-roxy-mode)
+  8469
+  '(8378 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+

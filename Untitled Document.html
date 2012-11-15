@@ -1,0 +1,1887 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<link href="main.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+body,td,th {
+	font-family: Georgia, Times New Roman, Times, serif;
+}
+.sidebar1 {
+	float: left;
+	width: 20%;
+	background: #93A5C4;
+	padding-bottom: 10px;
+}
+.content {
+	padding: 10px 0;
+	width: 80%;
+	float: left;
+}
+-->
+</style><!--[if lte IE 7]>
+<style>
+.content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
+ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
+</style>
+<![endif]--></head>
+
+<body>
+
+<div class="container">
+  <div class="header">
+   <h1>The Personality Project</h1>
+    <!-- end .header --></div>
+  
+  <script type="text/javascript">
+
+//Nested Side Bar Menu (Mar 20th, 09)
+//By Dynamic Drive: http://www.dynamicdrive.com/style/
+
+var menuids=["sidebarmenu1"] //Enter id(s) of each Side Bar Menu's main UL, separated by commas
+
+function initsidebarmenu(){
+for (var i=0; i<menuids.length; i++){
+  var ultags=document.getElementById(menuids[i]).getElementsByTagName("ul")
+    for (var t=0; t<ultags.length; t++){
+    ultags[t].parentNode.getElementsByTagName("a")[0].className+=" subfolderstyle"
+  if (ultags[t].parentNode.parentNode.id==menuids[i]) //if this is a first level submenu
+   ultags[t].style.left=ultags[t].parentNode.offsetWidth+"px" //dynamically position first level submenus to be width of main menu item
+  else //else if this is a sub level submenu (ul)
+    ultags[t].style.left=ultags[t-1].getElementsByTagName("a")[0].offsetWidth+"px" //position menu to the right of menu item that activated it
+    ultags[t].parentNode.onmouseover=function(){
+    this.getElementsByTagName("ul")[0].style.display="block"
+    }
+    ultags[t].parentNode.onmouseout=function(){
+    this.getElementsByTagName("ul")[0].style.display="none"
+    }
+    }
+  for (var t=ultags.length-1; t>-1; t--){ //loop through all sub menus again, and use "display:none" to hide menus (to prevent possible page scrollbars
+  ultags[t].style.visibility="visible"
+  ultags[t].style.display="none"
+  }
+  }
+}
+
+if (window.addEventListener)
+window.addEventListener("load", initsidebarmenu, false)
+else if (window.attachEvent)
+window.attachEvent("onload", initsidebarmenu)
+
+</script>
+ 
+<!--http://cran.r-project.org/web/packages/psych/psych.pdf #This should be a link somewhere! None of the links for the psych functions work! -->
+ 
+  <div class="sidebar1">
+    <ul id="sidebarmenu1">
+<li> <a href="http://personality-project.org">Return to Homepage</a>
+<li> <a href="#Intro">Introduction</a>
+		<ul>
+			<!--<li>What is R?-->
+			<li><a href="#compare">Comparison to SPSS/SAS</a>
+			<li><a href="http://cran.r-project.org/">How do I get it</a>
+		</ul>
+	<li> <a href="#general">General Comments</a>
+		<ul> 
+		    <li><a href="#twelvestep">R in 12 simple steps</a> 
+			<li> <a href="#guidance">Help and Guidance</a>
+			<li><a href="#getdata"> Getting the data</a>
+			<ul>
+				<li>From a <a href="#fromtext">text file</a>
+				<li>From the <a href="#fromclip">clipboard</a>
+				<li>From the <a href="#fromweb">web</a>
+				<li>From <a href="#fromstats">SAS/SPSS</a>
+			</ul>
+			<li><a href="#getaround"> Getting around in R</a>
+		</ul>
+	
+	
+	<li> <a href="#manipulate">Data Manipulation</a>
+	<li> <a href="#descriptive">Basic descriptive statistics</a>
+	<li> <a href="#graphics">Graphical displays</a>
+<!--
+		<ul>
+			<li>box plots, scatter plots
+			<li>scatter plot matrices
+			<li>multiple regression lines
+			<li>plotting using dates
+		</ul>
+-->			
+		
+	<li> <a href="#anova">Analysis of variance</a>
+<!--		<ul>
+			<small>
+			<li> one and two way between subjects
+			<li> one and two way within subjects
+			</small>
+		</ul>
+!-->
+	<li> <a href="#alpha">Scale construction and reliability</a>
+		<ul>
+			<li><a href="#VSS">VSS: Very Simple Structure</a>
+			<li><a href="#alpha">alpha</a> 
+			<li><a href="#Beta">beta
+			<li><a href="#Omega">omega</a>
+		</ul>
+	<li> <a href="#linear">Basic multivariate analysis 
+		<ul>
+			<li><a href="#linear">Regression and the linear model</a>
+			<li><a href="#mds"> Unidimensional and Multidimensional scaling</a>
+			<li><a href="#factoranal">Principal Components and Factor 
+		Analysis</a>
+			<li><a href="#cluster">Cluster Analysis (particularly of Items)
+		
+			<li><a href="#sem">Structural Equations</a>
+		</ul>
+	<li> <a href="#simulate">Simulating data</a>
+	<li> <a href="#sem">Further topics (more text to follow)
+		<ul>
+			<li><a href="#sem">Structural Equation Modeling</a>
+			<li><a href="#hlm">Multi-level models</a>
+			<li><a href="#irt">Rasch models for Item Response</a>
+			<li><a href="ftp://ftp.usc.edu/pub/wilcox/Rallfunv2">Wilcox robust statistics analyze trimmed data and use bootstrap techniques to determine p values (untried).</a>
+		</ul>
+	 <li> <a href="#adding">Adding new commands/packages/<br>libraries</a>
+	 <ul> 
+	 	<li><a href="psych-manual.pdf">Psych package user manual</a>
+	 	<li><a href="html/00Index.html">Psych package index
+	 </ul>
+	<li><a href="#commands"> A list of useful commands</a>
+<!--		<ul>
+			<li> Input/Output
+			<li> Moving around
+			<li> Data transformations 
+			<li> Graphics
+			<li> Statistics
+		</ul>
+-->			
+</ul>
+
+    <br />
+    
+<!--
+<p> <font face=Georgia, Times New Roman, Times, Serif size=0>Search the Personality Project by entering keywords or phrases:</font><br>
+-->
+
+<!-- Search Google -->
+    <p></p>
+
+<!--
+<FORM method=GET action=http://www.google.com/custom>
+<TABLE bgcolor=#93A5C4 cellspacing=0 border=0>
+<tr valign=top><td>
+&nbsp;<A HREF=http://www.google.com/search>
+</td>
+<td>
+<INPUT TYPE=text name=q size=23 maxlength=20% value="">
+<INPUT type=submit name=sa VALUE="Search">
+<INPUT type=hidden name=cof VALUE="AH:center;AWFID:6d538e536aae3737;"> <br>
+<font face= Georgia, Times New Roman, Times, Serif size=-1><input type=hidden name=domains value="personality-project.org;issid.org;personalitytheory.org"><br><input type=radio name=sitesearch value="" checked>Search World Wide Web <br /> <input type=radio name=sitesearch value="personality-project.org">Search personality-project.org <br /> <input type=radio name=sitesearch value="issid.org">Search issid.org <br /> <input type=radio name=sitesearch value="personalitytheory.org">Search personalitytheory.org </font><br>
+</td></tr></TABLE>
+</FORM></p>
+-->
+
+<br>
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style" style="width:220px; margin:0 auto">
+<a href="http://addthis.com/bookmark.php?v=250&amp;username=xa-4c72caf919ae5ebb" class="addthis_button_compact">Share</a>
+<span class="addthis_separator">|</span>
+<a class="addthis_button_facebook"></a>
+<span class="addthis_separator">|</span>
+<a class="addthis_button_myspace"></a>
+<span class="addthis_separator">|</span>
+<a class="addthis_button_google"></a>
+<span class="addthis_separator">|</span>
+<a class="addthis_button_twitter"></a>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4c72caf919ae5ebb">
+</script>
+<br>
+<!-- AddThis Button END -->
+
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+<!-- Search Google -->
+    <p></p><br /><br /><br /><br /><br /> <br /><br /><br /><br /><br /><br /> <br /><br /><br /><br /><br /><br /> <br /><br /><br /><br /><br /><br />
+    <!-- end .sidebar1 --></div>
+  <div class="content">
+  <a name="Back to Top"></a>
+    <h1>Using R for psychological research:</h1>
+    <h3>A simple guide to an elegant package</h3>
+    <a name="Intro"></a><h2 align="left">Introduction to R</h2>
+
+<p>(For a very abbreviated form of this guide meant to help students do basic data analysis in a personality research course, see <a href="r.short.html">a very short guide</a>.  In addition, a <a href="r.205.tutorial.html">short guide </a>to data analysis in a research methods course offers some more detail on graphing.)
+
+<p>There are many possible statistical programs that can be used in psychological research. They differ in multiple ways, at least some of which are ease of use, generality, and cost.  Some of the more common packages used are Systat, SPSS, and SAS. These programs have GUIs (Graphical User Interfaces) that are relatively easy to use but that are unique to each package.  These programs are also very expensive and limited in what they can do.  Although convenient to use, GUI based operations are difficult to discuss in written form.  When teaching statistics or communicating results to others, it is helpful to use examples that may be used by others using different computing environments and perhaps using different software. This set of brief notes describes an alternative approach that is widely used by practicing statisticians, the statistical environment R.  This is not meant as a user's guide to R, but merely the first step in guiding people to helpful tutorials.  I hope that enough information is provided in this brief guide to make the reader want to learn more.  (For the impatient, <a href="r.short.html">an even briefer guide</a> to analyzing data for <a href="../personality.html"> personality research </a> is also available.)
+
+<p> It has been claimed that "The statistical programming language and computing environment S has become the de-facto standard among statisticians. The S language has two major implementations: the commercial product S-PLUS, and the free, open-source R. Both are available for Windows and Unix/Linux systems; R, in addition, runs on Macintoshes." From <a href="http://socserv.socsci.mcmaster.ca/jfox/Courses/R-course/index.html">John Fox's short course on S and R</a>.  
+
+<p> The <a href="http://www.ci.tuwien.ac.at/~hornik/R/R-FAQ.html#Introduction">R project</a>,  based upon the S and S+ stats packages, has developed an extremely powerful set of "packages" that operate within one program. Although described as merely "an effective data handling and storage facility [with] a suite of operators for calculations on arrays, in particular, matrices" R is, in fact, a very useful interactive package for data analysis.  When compared to most other stats packages used by psychologists, R has at least three compelling advantages: it is free, it runs on multiple platforms (e.g., Windows, Unix, Linux, and Mac OS X and Classic), and combines many of the most useful statistical programs into one quasi integrated program. (<a href="http://www.gnu.org/software/r/R.html">R is free software</a> as part of the <a href="http://www.gnu.org/">GNU Project</a>.  That is, users are free to use, modify, and distribute the program, within the limits of the <a href="http://www.gnu.org/licenses/licenses.html#WhatIsCopyleft">GNU non-license</a>).  <a href="http://stat.ethz.ch/R-manual/R-patched/doc/manual/R-admin.html">The program itself and detailed installation instructions</a> for Linux, Unix, Windows, and Macs are available through <a href="http://cran.r-project.org/">CRAN</a> (Comprehensive R Archive Network). 
+
+<p> Although many run R as a language and programming environment, there are Graphical User Interfaces (GUIs)  available for PCs, Linux and Macs.  See for example, <a href="http://socserv.mcmaster.ca/jfox/Misc/Rcmdr/">R Commander</a> by John Fox
+and R-app for the Macintosh developed by Stefano M. Iacus and Simon Urbanek.  Compared to the basic PC environment, the Mac GUI is to be preferred.
+
+<p> A note on the numbering system:  The R-development core team releases an updated version of R about every six months.  The version of 2.11.1 was replaced with 2.12.0 in late October, 2010. Bug fixes are then added with a sub version number (e.g. 2.12.1  will fix minor problems with 2.12.0). The next version of R (R.2.13.0) will be released in early spring, 2011).
+
+<p>
+R is an integrated, interactive environment for data manipulation and analysis that in- cludes functions for standard descriptive statistics (means, variances, ranges) and also in- cludes useful graphical tools for Exploratory Data Analysis. In terms of inferential statistics R has many varieties of the General Linear Model including the conventional special cases of Analysis of Variance, MANOVA, and linear regression. Statisticians and statistically minded people around the world have contributed packages to the R Group and maintain a <a href="https://stat.ethz.ch/mailman/listinfo/r-help">very active news group offering suggestions and help</a>. The growing collection of packages and the ease with which they interact with each other and the core R is perhaps the greatest advantage of R. Advanced features include correlational packages for multivariate analyses including Factor and Principal Components Analysis, and cluster analysis. Advanced multivariate analyses packages that have been contributed to the R-project include one for Structural Equation Modeling (sem), Multi-level modeling (also known as Hierarchical Linear Modeling and referred to as non linear mixed effects in the nlme4 package) and taxometric analysis. All of these are available in the free packages distributed by the R group at CRAN. Many of the functions described here are incorporated into the psych package. Other packages useful for psychometrics are described in a task-view at CRAN. In addition to be a envi- ronment of prepackaged routines, R is a interpreted programming language that allows one to create specific functions when needed.
+
+<p>In addition to be a package of routines, R is a interpreted programming language that allows one to create specific functions when needed. This does not require great skills at programming and allows one to develop short functions to repetitive tasks.
+
+
+<p> R is also an amazing program for producing statistical graphics.  A collection of some of the best graphics is available at <a href="http://addictedtor.free.fr/graphiques/">addictedtoR</a> with <a href="http://addictedtor.free.fr/graphiques/thumbs.php">a complete gallery</a> of thumbnail of figures.   
+
+
+</td>
+</tr>
+</table>
+<p> <a href="http://www.network-theory.co.uk/R/manual/"> An introduction to R  </a>is available as a pdf or as a paper back. It is worth reading and rereading. Once R is installed on your machine, the introduction may be obtained by using the <strong>help.start</strong> command.  More importantly for the novice, a number of very helpful tutorials have been written for R.  (e.g., the tutorial by John Verzani to help <a href="http://www.math.csi.cuny.edu/~verzani/tutorials/simpleR/index.html">one teach introductory statistics</a> and learn R at the same time--this has now been published as a book, but earlier versions are still available online), or (by Jonathan Baron and Yuelin Li) to use <a href="http://www.psych.upenn.edu/~baron/rpsych/rpsych.html">R in the Psychology lab</a>. The Baron and Li tutorial is the most useful for psychologists trying to learn R. Another useful resource is <a href="http://socserv.socsci.mcmaster.ca/jfox/Courses/R-course/index.html">John Fox's short course on R</a>. For a more complete list of brief (<100 pages) and long( > 100 pages)  tutorials, go to the "<a href="http://cran.r-project.org/other-docs.html">contributed</a>" section of the CRAN. More locally, I have taken tutorials originally written by Roger Ratcliff and various graduate students on how to do analysis of variance using S and adapated them to the R environment.  This guide was developed to help others learn R, and also to help students in <a href="http://personality-project.org/revelle/syllabi/205/205.syllabus.html">Research Methods</a>, <a href="http://personality-project.org/revelle/syllabi/371/371.syllabus.html">Personality Research</a>, <a href="http://personality-project.org/revelle/syllabi/405.syllabus.html">Psychometric Theory</a>, <a href="http://personality-project.org/revelle/syllabi/454/454.syllabus.pdf">Structural Equation Modeling</a>,  or other courses do some basic statisics.  
+
+<p>Although one can find R on various lab machines,  it is probably more useful, however, to download a copy to your own machine. To download a copy of the software,  go to the download section of the  <a href="http://cran.r-project.org//">cran.r-project.org</a> site. For <a href="http://www.ci.tuwien.ac.at/~hornik/R/R-FAQ.html#How%20can%20R%20be%20installed%20(Macintosh)">Mac users</a>, version 2.10.1 requires OS 10.4 or later. Installation (at  least on Macs) is very straightforward.  <a href="http://www.ci.tuwien.ac.at/~hornik/R/R-FAQ.html#How%20can%20R%20be%20installed%20(Windows)">Installation on Windows systems </a>s or <a href="http://www.ci.tuwien.ac.at/~hornik/R/R-FAQ.html#How%20can%20R%20be%20installed%20(Unix)">Unix</a> is presumably equally easy, but I don't know.
+
+
+<p> This  set of notes relies heavily on "<a href="http://cran.r-project.org/doc/manuals/R-intro.html">An introduction to R</a>" by Venables, Smith and the R Development Core Team, the very helpful  <a href="http://www.psych.upenn.edu/~baron/rpsych/rpsych.html">Baron and Li</a> guide and the <a href="http://www.math.csi.cuny.edu/verzani/tutorials/simpleR/">teaching stats</a> page of John Verzani. Their pages have helped me learn a little bit of R. There is at least one text book in using R: "Modern Applied Statistics with S" by Brian D. Ripley and William N. Venables.  My <a href="book/">psychometrics text</a> (in progress) has all of its examples in R.
+
+<p> The <a href="https://www.stat.math.ethz.ch/mailman/listinfo/r-help">R help listserve</a> is a very useful source of information.  Just lurking will lead to the answers for many questions.  Much of what is included in this tutorial was gleaned from comments sent to the help list. The most frequently asked questions have been organized into a <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html">FAQ</a>. The archives of the help group are very useful and should be searched before asking for help.  Jonathan Baron maintains <a href="http://finzi.psych.upenn.edu/search.html">a searchable data base</a> of the help list serve. <b>(Before asking for help, it is important to read the <a href="http://www.r-project.org/posting-guide.html">posting guide</a> as well as "<a href="http://www.catb.org/~esr/faqs/smart-questions.html">How to Ask Questions the Smart Way</a>"  </b>
+
+<p><a id="compare"></a> For a thoughtful introduction to R for SPSS and SAS users, see the <a href="http://oit.utk.edu/scc/RforSAS&amp;SPSSusers.pdf">tutorial</a> developed at the University of Tennessee by Bob Muenchen.  For a comparison of what is available in R to what is available in SPSS or SAS, see his <a href="http://oit.utk.edu/scc/RforSAS&amp;SPSSproducts.pdf"> table </a> comparing the features of R to SPSS.
+
+<a name="general"></a>
+<h2>General comments</h2> <p><A HREF="r.guide.html#Back to Top">Back to Top</a>
+<p>R is not overly user friendly (at first). Its error messages are at best cryptic. It is, however, very powerful and once partially mastered, easy to use.  And it is free. As additional modules are added, it becomes even more useful.  Modules included allow for multilevel (hierarchical) linear modeling, confirmatory factor analysis, etc.  I believe that it is worth the time to learn how to use it. <a href="http://www.psych.upenn.edu/~baron/rpsych/rpsych.html">J. Baron and Y. Li's</a> guide is very helpful.  They <a href="http://finzi.psych.upenn.edu/">include a one page pdf summary sheet of commands</a> that is well worth printing out and using.  A three page summary  sheet of commands is available from <a href="http://www.rpad.org/Rpad/Rpad-refcard.pdf">Rpad</a>.
+
+<a name="twelvestep"></a>
+<h2>Using R in 12 simple steps for personality research</h2>
+<p>(These steps are not meant to limit what can be done with R, but merely to describe how to do the analysis for the most basic of research projects and to give a first experience with R).
+<ol>
+<li> Install R on your computer or go to a machine that has it.
+<li> Download the psych package as well as other recommended packages from CRAN using
+the install.packages function, or using the package installer in the GUI. To get packages recommended for a particular research field, use the ctv package to install a particular task view. Note, these first two steps need to be done only once!
+<li> Activate the psych package or other desired packages using e.g., library(psych). This needs to be done every time you start R. Or, it is possible to modify the startup parameters for R so that certain libraries are loaded automatically.
+<li> Enter your data using a text editor and save as a text file (perhaps comma delimited if using a spreadsheet program such as Excel or OpenOffice)
+<li> Read the data file or copy and paste from the clipboard (using, e.g., read.clipboard).
+<li> Find basic descriptive statistics (e.g., means, standard deviations, minimum and maxima)
+using describe.
+<li> Prepare a simple descriptive graph (e.g, a box plot) of your variables. 
+<li> Find the correlation matrix to give an overview of relationships (if the number is not
+too great, a scatter plot matrix or SPLOM plot is very useful, this can be done with
+pairs.panels.
+<li> If you have an experimental variable, do the appropriate multiple regression using stan-
+dardized or at least zero centered scores. 
+<li>If you want to do a factor analysis or principal components analysis, use the factanal or
+fa and principal function
+<li>To score items and create a scale and find various reliability estimates, use score.items and perhaps omega.
+<li>Graph the results.
+</ol>
+
+<h2>Getting started</h2>
+
+<h3>Installing R on your computer</h3>
+<p>Although it is possible that your local computer lab already has R, it is most useful to do analyses on your own machine. In this case you will need to download the R program from the R project and install it yourself. Using your favorite web browser, go to the R home page at <a href="http://www.r-project.org">http://www.r-project.org</a> and then choose the Download from CRAN (Comprehensive R Archive Network) option. This will take you to list of mirror sites around the world. You may download the Windows, Linux, or Mac versions at this site. For most users, downloading the binary image is easiest and does not require compiling the program. Once downloaded, go through the install options for the program. If you want to use R as a visitor it is possible to install R onto a “thumb drive” or “memory stick” and run it from there. (See the R for Windows FAQ at CRAN).
+<h3>Packages and Task Views</h3>
+<p>One of the great strengths of R is that it can be supplemented with additional programs that are included as packages using the package manager. (e.g., sem or OpenMX do structural equation modeling) or that can be added using the source command. Most packages are directly available through the CRAN repository. Others are available at the BioConductor <a>(http://www.bioconductor.org</a>) repository. Yet others are available at “other” repositories. The psych package (Revelle, 2010) may be downloaded from CRAN or from the <a>http: //personality-project.org/r</a> repository.
+
+<p>The concept of a “task view” has made downloading relevant packages very easy. For instance, the install.views("Psychometrics") command will download over 20 packages that do various types of psychometrics. To install the Psychometrics task view
+<font color="#0000FF">
+<pre>
+   install.packages("ctv")
+   library(ctv)
+   install.views("Psychometrics")
+</pre>
+</font>
+<p>For any other than the default packages to work, you must activate it by either using the Package Manager or the library command:
+<font color="#0000FF">
+<pre>
+   library(psych)
+   library(sem) 
+</pre>
+</font>
+<p>entering 
+<font color="#0000FF">
+<pre>
+   ?psych
+</pre>
+</font> <p>will give a list of the functions available in the psych package as well as an overview of their functionality.
+
+<font color="#0000FF">
+<pre>
+   objects(package:psych)
+</pre>
+</font> <p>will list the functions available in a package (in this case, psych).
+
+<p>If you routinely find yourself using the same packages everytime you use R, you can modify the Startup process by specifying what should happen .First. Thus, if you always want to have psych available,
+
+<font color="#0000FF">
+<pre>
+   .First <- function(library(psych))
+</pre>
+</font> 
+
+<p>and then when you quit, use the save workspace option.
+<br>
+
+<h3>Help and Guidance</h3>
+<p>R is case sensitive and does not give overly useful diagnostic messages. If you get an error message, don’t be flustered but rather be patient and try the command again using the correct spelling for the command.
+
+<p> When in doubt, use the <b>help ()</b> function. This is identical to the  <b>? function</b> where function is what you want to know about.  e.g.,
+<p>
+<font color="#0000FF">
+<pre>
+   help(read.table)  #or
+   ?read.table   #another way of asking for help 
+</pre>
+</font> 
+
+<p>asks for help in using the read.table function. the answer is in the help window. 
+<font color="#0000FF">
+<pre>
+   ??read #searches for all uses of the function in all your packages.
+   apropos("read") #returns all available functions with that term in their name.
+   RSiteSearch("read") #opens a webbrowser and searches voluminous files
+</pre>
+</font>
+
+<p>RSiteSearch(“keyword”) will open a browser window and return a search for “keyword” in all functions available in Rand the associated packages as well (if desired) the R-Help News groups.
+<p>All packages and all functions will have an associated help window. Each help window will give a brief description of the function, how to call it, the definition of all of the available parameters, a list (and definition) of the possible output, and usually some useful examples. One can learn a great deal by using the help windows, but if they are available, it is better to study the package vignette.
+
+<h3>Package vignettes</h3>
+<p>All packages have help pages for each function in the package. These are meant to help you use a function that you already know about, but not to introduce you to new functions. An increasing number of packages have a package vignettes that give more of an overview of the program than a detailed description of any one function. These vignettes are accessible from the help window and sometimes as part of the help index for the program. The two vignettes for the psych package are also available from the personality project web page. (An <a href="overview.pdf">overview</a> of the psych package and Using the psych package as a <a href="psych_for_sem">front end</a> to the sem package).
+
+<p> Commands are entered into the "R Console" window.  You can add a comment to any line by using a #.   The Mac version has a text editor window that allows you to write, edit and save your commands. Alternatively, if you use a normal text editor (As a Mac user, I use BBEDIT, PC users can use Notepad), you can write out the commands you want to run, comment them so that you can remember what they do the next time you run a similar analysis, and then copy and paste into the R console. 
+
+<p>Although being syntax driven seems a throwback to an old, pre Graphical User Interface type command structure, it is very powerful for doing production statistics.  Once you get a particular set of commands to work on one data file, you can change the name of the data file and run the entire sequence again on the new data set.  This is is also very helpful when doing professional graphics for papers.  In addition, for teaching, it is possible to prepare a web page of instructional commands that students can then cut and paste into R to see for themselves how things work.  That is what may be done with the instructions on this page.  It is also possible to write text in <a href="http://www-h.eng.cam.ac.uk/help/tpl/textprocessing/">latex</a>  with embedded R commands.  Then executing the <a href="http://www.ci.tuwien.ac.at/~leisch/Sweave/Sweave-manual-20060104.pdf">Sweave</a> function on that text file will add the R output to the <a href="http://www-h.eng.cam.ac.uk/help/tpl/textprocessing/">latex</a> file.  This almost magical feature allows rapid integration of content with statistical techniques. More importantly, it allows for "reproducible research" in that the actual data files and instructions may be specified for all to see. 
+
+
+<p> As you become more adept in using R, you will be tempted to enter commands directly into the console window.  I think it is better to keep (annotated) copies of your commands to help you next time.
+
+<p> Command syntax tends to be of the form:
+<br> variable = function (parameters)   or
+<br> variable <- function (parameters)  the = and the <- symbol imply replacement, not equality
+<br> the preferred style seems to be to use the <-  symbol to avoid confusion
+<br> 
+<br> elements of arrays are indicated within brackets [ ] 
+
+
+
+<p> This guide assumes that you have installed a copy of R onto your computer and you are trying out the commands as you read through this. (Not necessary, but useful.)
+<a id="guidance"></a>
+<h3 align="left">Help and Guidance</h3>
+
+<p>For a list of all the commands that use a particular word, use the <b>apropos ()</b> command:
+
+<pre>
+<font color="#0000FF">   apropos(table)  #lists all the commands that have the word "table" in them</font>
+    
+ apropos(table)
+ [1]"ftable"              "model.tables" "pairwise.table"   "print.ftable"        "r2dtable"           
+ [6]"read.ftable"         "write.ftable" ".__C__mtable"     ".__C__summary.table" ".__C__table"        
+[11]"as.data.frame.table" "as.table"     "as.table.default" "is.table"           "margin.table"       
+[16]"print.summary.table" "print.table"  "prop.table"       "read.table"       "read.table.url"     
+[21]"summary.table"       "table"        "write.table"      "write.table0"   
+</pre>
+
+<p> For more complicated functions (e.g., plot(), lm()) the help function shows very useful examples.  A very nice example is <b>demo(graphics)</b>
+which shows many of the complex graphics that are possible to do. <b>demo(lm.glm)</b> gives many examples of the linear model/general linear model.
+
+
+
+
+
+<a name="getdata"></a><h2> Entering or getting the data </h2>
+
+<a id="fromtext"></a><h3>From a text file</h3>
+<p> For very small data sets, the data can be directly entered into R. For more typical data sets, it useful to 
+use a simple text editor or a spreadsheet program (e.g., Excel or <a href="http://www.openoffice.org/">OpenOffice</a>). You can enter data in a tab delimted form with one variable per column and columns labeled with unique name. A numeric missing value code (say -999) is more convenient than using "." ala Systat.  To read the data into a rows (subjects) by columns (variables) matrix use the read.table command.
+
+<p> A very useful command, for those using a GUI is file.choose() which opens a typical selection window  for choosing a file. 
+
+<pre>
+
+<p>#specify the name and address of the remote file
+<font color="#0000FF">
+datafilename <- file.choose()     # use the OS to find the file 
+</font>
+
+#e.g.,  datafilename <- "Desktop/epi.big5.txt"  #locate the local directory  
+
+person.data  <- read.table(datafilename,header=TRUE)  #read the data file
+
+#Alternatively, to read in a comma delimited file:
+#person.data  <- read.table(datafilename,header=TRUE,sep=",")  
+
+</pre>
+
+
+<a id="fromclip"></a><h3>From the clipboard</h3>
+<p> For smallish problems (< 32K), you can just cut and paste from a  spreadsheet or text file into R. 
+
+<pre>
+<p>#On a PC,  the commands are
+ my.data <- read.table(file("clipboard"),header=TRUE)
+#On a Mac, the command
+my.data <- read.table(pipe("pbpaste"),header=TRUE)
+
+</pre>
+
+<p>(This requires remembering a rather complex combination of syntax, or using the <b>read.clipboard </b>function (from the <a href="html/00Index.html">psych</a> package) or copying the following function into R:
+
+<pre>
+<font color="#0000FF">
+<p>function(header=TRUE) {
+    MAC<-Sys.info()[1]=="Darwin"    #are we on a Mac using the Darwin system?
+   if (!MAC ) {if (header) read.clipboard<-read.table(file("clipboard"),header=TRUE)
+            else read.clipboard<-read.table(file("clipboard")) }
+    else {
+   if (header) read.clipboard<-  read.table(pipe("pbpaste"),header=TRUE)
+   else read.clipboard<- read.table(pipe("pbpaste"))}
+   }
+</font>
+</pre>
+
+<p>Then, to copy the clipboard :
+<pre>
+<p><font color="#0000FF">mydata <- read.clipboard()      #assumes the first line has header information </font>or
+
+<font color="#0000FF">mydata <- read.clipboard(header=FALSE)  #no headers.
+
+</pre>
+</font>
+
+<p> Files can be comma delimited (csv) as well. In this case, you can specify that the seperators are commas.  For very detailed help on importing data from different formats (SPSS, SAS, Matlab, Systat, etc.) see the <a href="http://cran.r-project.org/doc/manuals/R-intro.html#Reading-data-from-files">data help page</a> from Cran.
+
+<a href="#fromweb"></a><h3>From the web</h3>
+<p> For teaching, it is important to note that it is possible to have the file be a remote file read through the web. (Note that for some commands, there is an important difference between line feeds and carriage returns.  For those who use Macs as web servers, make sure that the unix line feed is used rather than old Mac format carriage returns.) For simplicity in my examples I have separated the name of the file to be read from the read.table command.  These two commands can be combined into  one.  The file can be local (on your hard disk) or remote. 
+
+
+<p> For most data analysis, rather than <a href="r.data.entry.html">manually enter the data into R</a>, it is probably more convenient to use a spreadsheet (e.g., Excel or OpenOffice) as a data editor, save as a tab or comma delimited file, and then read the data or copy using the read.clipboard() command.  Most of the examples in this tutorial assume that the data have been entered this way. Many of the examples in the help menus have small data sets entered using the c() command or created on the fly.
+
+<h3> Data input example </h3>
+<p> For the first example, we  read data from a remote file server for several hundred subjects on 13 personality scales (5 from the Eysenck Personality Inventory (EPI), 5 from a Big Five Inventory (BFI), the Beck Depression Inventory, and two anxiety scales).  The file is structured normally, i.e. rows represent different subjects, columns different variables, and the first  row gives subject labels.  (To read from a local file, we simply change the name of the datafilename.)
+
+
+<pre>
+<p>
+<font color="#0000FF">#specify the name and address of the remote file
+datafilename <- "http://personality-project.org/r/datasets/maps.mixx.epi.bfi.data"
+#datafilename <- "Desktop/epi.big5.txt"  #read from local directory  or
+# datafilename <- file.choose()     # use the OS to find the file 
+#in all cases
+person.data  <- read.table(datafilename,header=TRUE)  #read the data file
+
+#Alternatively, to read in a comma delimited file:
+#person.data  <- read.table(datafilename,header=TRUE,sep=",")  
+
+
+names(person.data)  #list the names of the variables
+</font>
+
+produces this output
+> >datafilename <- "http://personality-project.org/r/datasets/maps.mixx.epi.bfi.data"
+> #datafilename <- "Desktop/epi.big5.txt"  #read from local directory
+> person.data  <- read.table(datafilename,header=TRUE)  #read the data file
+ 
+> #Alternatively, to read in a comma delimited file:
+> #person.data  <- read.table(datafilename,header=TRUE,sep=",")  
+
+ 
+> names(person.data)  #list the names of the variables
+ [1] "epiE"     "epiS"     "epiImp"   "epilie"    "epiNeur"   "bfagree"  "bfcon"    "bfext" 
+ [9] "bfneur"   "bfopen"   "bdi"      "traitanx"  "stateanx"
+
+</pre>
+
+<p>The data are now in the data.table  "person.data".  Tables allow one to have columns that are either numeric or alphanumeric.  To address a particular row (e.g., subject = 5) and column (variable = 7) you simplely enter the required fields:
+
+<pre>
+
+<font color="#0000FF"><p>person.data[5,8]         #the 5th subject, 8th variable  or
+person.data[5,"bfext"]   #5th subject,  "Big Five Inventory - Extraversion" variable
+ 
+ #or  
+ 
+person.data[5,]         #To list all the data for a particular subject (e.g, the 5th subject) 
+
+person.data[5:10,]      #list cases 5 - 10
+
+person.data[5:10,"bfext"]  #list  just the extraversion scores for subjects 5-10
+person.data[5:10,4:8]      #list the 4th through 8th variables for subjects 5 - 10.
+
+</font>
+</pre>
+
+<p>In order to select a particular subset of the data, use the <b>subset</b> function.  The next example uses subset to display cases where the lie scale was pretty high
+
+<pre>
+<p>
+<font color="#0000FF">subset(person.data,epilie>6)    #print the data meeting the logical condition epilie>6</font>
+#also try
+person.data[epilie>6] 
+</pre>
+
+<p>produces this output
+<pre>
+<p>
+epiE epiS epiImp epilie epiNeur bfagree bfcon bfext bfneur bfopen bdi traitanx stateanx
+16    11    5      6      7      13     126    78   112     83    132   4       45       28
+212    6    4      1      7       4     147   119   102     81    142   2       26       21
+
+</pre>
+
+<p>One can also selectively display particular columns meeting particular criteria, or selectively extract variables from a dataframe.
+
+<pre>
+<p>
+<font color="#0000FF">subset(person.data[,2:5],epilie>5 & epiNeur<3) #notice that we are taking the logical 'and'  
+</font>
+
+ epiS epiImp epilie epiNeur
+12    12      3      6       1
+118    8      2      6       2
+
+<font color="#0000FF">subset(person.data[,3:7], epilie>6 | epiNeur ==2 ) #do a logical 'or' of the two conditions
+
+epi <- subset(data,select=epiE:epiNeur)  #select particular variables from a data frame</font>
+</pre>
+
+
+
+<a href="#fromstats"></a><h3 align="left">Reading data from SPSS or other stats programs</h3>
+
+<p>In addition to reading text files from local or remote servers, it is possible to read data saved in other stats programs (e.g., SPSS, SAS, Minitab). read commands are found in the package <b>foreign</b>.  Use the package manager option (<b>package.manager</b>) and add the "foreign" package.  Unfortunately, although read.table will read from a local or remote device, read.spss seems to read only from a local device. (This might be because of the line feed/carriage return problem.  I will check this.)
+
+<pre><p>
+<font color="#0000FF">datafilename <- "http://personality-project.org/r/datasets/finkel.sav"   #remote file
+datafilename <- "/Users/bill/Library/Favorites/R.tutorial/datasets/finkel.sav"  #local file 
+
+eli.data <- read.spss(datafilename, use.value.labels=TRUE, to.data.frame=TRUE) 
+#works for local but not remote?  seems to be a problem in uploading to the server
+</font>
+
+</pre>
+
+
+<p> Data sets can be saved for later analyses using the save command and then reloaded using load.  If files are saved on remote servers, use the load(url(remoteURLname)) command.
+
+<pre>
+<p><font color="#0000FF">save(object,file="local name") #save an object (e.g., a correlation matrix) for later analysis
+load(file)         	       #gets the object (e.g., the correlation matrix back)
+load(url("http://personality-project.org/r/datasets/big5r.txt"))  #get the correlation matrix
+</font>
+
+</pre>
+
+
+<h2 align="left">Getting around in R</h2>
+
+<a name="getaround"></a><p>R is case sensitive so be  careful when naming or calling functions and variables.  Commands are entered in the command console and (at least for Macs), are colored red while results in the results console are shown in blue.  Commands can be cut and pasted from a text editor (or from a browser if following along with examples) into the command console.  Like Unix or OS X, using the up arrow shows previous commands.
+
+<p> It is a useful habit to be consistent in your own naming conventions.  Some use lower case letters for variables, Capitalized for data frames, all caps for functions, etc.  It is easier to edit your code if you are reasonably consistent.  Comment your code as well.  This is not just so others can use it, but so that you can remember what you did 6 months later.
+<br>
+
+
+<br><b>ls()</b> #shows the variables in the workspace
+<br><b>help (name)</b> #provides help about "name"  
+<br><b>? name</b>    #does the same
+<br><b>rm(variable) </b>#removes that variable
+<br><b>rm(list = ls())</b> #removes all variables from the work space
+<br><b>attach("table")</b> #makes the elements of "table" available to be called directly
+<br><b>names(table)</b>   #what are the variables inside the table
+<br>variable <-c(value1,value2,value3 ...)   #assigns values to a variable.
+<br>newvariable <- <b>cbind</b> (variable1, variable2, variable3 ... variable n)   # make up a new array with these variables
+<br>
+#  e.g.
+
+<pre>
+<p>ls()     #show the variables in the workspace
+
+
+datafilename <- "http://personality-project.org/R/datasets/maps.mixx.epi.bfi.data" 
+person.data <-  read.table(datafilename,header=TRUE)  #read the data file
+names(person.data)  #list the names of the variables
+
+attach(person.data)      #make the separate variable available
+
+epi <-  cbind(epiE,epiS,epiImp,epilie,epiNeur)       #form a new variable "epi" 
+epi.df <- data.frame(epi)      #actually, more useful to treat this variable as a data frame 
+
+bfi.df <- data.frame(cbind(bfext,bfneur,bfagree,bfcon,bfopen))    
+	#create bfi as a data frame as well
+ls()    #show the variables
+y <- edit(person.data)    
+	#show the data.frame or matrix x in a text editor and save changes to y
+fix(person.data)          
+	#show the data.frame or matrix x in a text editor 
+invisibible(edit(x))
+        #creates an edit window without also printing to console -- directly make changes.
+        #Similar to the most basic spreadsheet.  Very dangerous!
+head(x)  #show the first few lines of a data.frame or matrix
+tail(x)  #show the last few lines of a data.frame or matrix
+page(x)  #show the structure of x
+
+
+</pre>
+<a name="manipulate"></a>
+<br><h2 align="left">Data manipulation</h2>
+<p><A HREF="r.guide.html#Back to Top">Back to Top</a>
+<p>The normal mathematical operations can be done on all variables.  e.g.
+<pre><p>
+imp2 <- epiImp*epiImp    #square epiImp
+si <- epiS+epiImp        #sum sociability and impulsivity
+statetotrait <- stateanx/traitanx  #find the ratio of state to trait anxiety
+weirdproduct <- epi*bfi     #multiply respective elements in two tables
+meanimp <- mean(imp)
+stdevimp <- sd(imp)
+standarizedimp <- scale(imp,scale=TRUE)    #center and then divide by the standard deviation
+
+</pre>
+
+<p> Logical operations can be performed.  Two of the most useful are the ability to replace if a certain condition holds, and to find subsets of the data.
+
+<pre><p>
+person.data[person.data == -9]=NA    
+	#replace all cases where a particular code is observed with NA<br>
+males=subset(person.data |gender ==1)
+	#x=subset(y|condition)
+</pre>
+
+<p> The power of R is shown when we combine various data manipulation procedures. Consider the problem of scoring a multiple choice test where we are interested in the number of items correct for each person.   Define a  scoring key vector and then score as 1 each item match with that key.  Then find the number of 1s for each subject. We use the Iris data set as an example.
+<pre><p>
+iris2 <- round(iris[1:10,1:4])   #get a sample data set
+key <- iris2[1,]    #make up an arbitary answer key
+score <- t(t( rowSums((iris2 == c(key[]))+0)))   #look for correct item and add them up
+mydata <- data.frame(iris2,score)     #
+key         #what is the scoring key
+mydata      #show the data with the number of items that match the key
+</pre>
+
+<p>(Thanks to Gabor Grothendieck and R help for this trick.)
+
+<a name="descriptive"></a><br><h2 align="left">Basic descriptive statistics</h2>
+<p><A HREF="r.guide.html#Back to Top">Back to Top</a>
+<pre><p>
+<font color="#0000FF">ls()   #list the variables in the work space</font>
+
+ls()
+[1] "bfi.df"       "datafilename" "epi"          "epi.df"       "person.data" 
+
+<font color="#0000FF">summary(epi.df)    #standard descriptive stats </font>
+
+   epiE            epiS            epiImp          epilie         epiNeur     
+ Min.   : 1.00   Min.   : 0.000   Min.   :0.000   Min.   :0.000   Min.   : 0.00  
+ 1st Qu.:11.00   1st Qu.: 6.000   1st Qu.:3.000   1st Qu.:1.000   1st Qu.: 7.00  
+ Median :14.00   Median : 8.000   Median :4.000   Median :2.000   Median :10.00  
+ Mean   :13.33   Mean   : 7.584   Mean   :4.368   Mean   :2.377   Mean   :10.41  
+ 3rd Qu.:16.00   3rd Qu.: 9.500   3rd Qu.:6.000   3rd Qu.:3.000   3rd Qu.:14.00  
+ Max.   :22.00   Max.   :13.000   Max.   :9.000   Max.   :7.000   Max.   :23.00  
+ 
+<font color="#0000FF"> summary(person.data["epiImp"])   #descriptive stats for one variable -- note the quote marks</font>
+ 
+     epiImp     
+ Min.   :0.000  
+ 1st Qu.:3.000  
+ Median :4.000  
+ Mean   :4.368  
+ 3rd Qu.:6.000  
+ Max.   :9.000  
+ 
+ 
+ summary(epiImp)  #show summary statistics for just a single variable
+ 
+ Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   3.000   4.000   4.368   6.000   9.000 
+ 
+ #The following do what their name implies 
+ max()
+ min()
+ mean()
+ median()
+ sum()
+ var()     #produces the variance covariance matrix
+ sd()      #standard deviation
+ mad()    #(median absolute deviation)
+ fivenum() #Tukey fivenumbers min, lowerhinge, median, upper hinge, max
+ 
+
+ #e.g.
+<font color="#0000FF"> attach(person.data)     #make the variables inside of data available to be called by name
+ max(epiImp)
+ min(epiImp)
+ mean(epiImp)
+ median(epiImp)
+ var(epiImp)
+ sqrt(var(epiImp))
+ sum(epiImp)
+ sd(epiImp)
+ mad(epiImp)
+ fivenum(epiImp)  
+ 
+ </font>
+ 
+ # and thus, to standardize a scale, 
+ impz=(epiImp-mean(epiImp))/sd(epiImp)
+ 	#standardizes one variable
+ epi.df=data.frame(epiE,epiS,epiImp,epilie,epiNeur)
+ 	#but, to standardize a matrix is a little trickier
+ epiz=(epi.df-mean(epi.df))/sd(epi.df)     
+ 	#doesn't work
+ epicentered=epi.df-mean(epi.df)           
+ 	#nor does this center the data
+ epicentered=t(t(epi.df)-mean(epi.df))  
+ 	#but this at least centers around the mean (by transposing and then subtracting)
+ epiz=t(t(epicentered)/sd(epi.df))  
+ 	#try this to get z scores
+ 
+ #however, there is a very useful command (<b>scale</b>) that does this automatically
+ 
+ <font color="#0000FF">epiz=scale(epi,scale=T)          #centers (around the mean) and scales by the sd  
+                                  
+                                  
+ 
+ #to print out fewer decimals, the round(variable,decimals) function is used.
+ 
+ round(mean(epiImp),2)
+ round(var(epiImp),2)
+ round(sqrt(var(epiImp)),2)
+ 
+fivenum(epiImp)      #give the lowest, 25%, median, 75% and highest value   (compare to summary)
+</font>
+</pre>
+<h3>The describe function.</h3>
+<p>Although the <b>summary </b> function gives Tukey's 5 number summaries, many psychologists will find the <b>describe</b> function in the <b>psych</b> more useful.
+<pre><p>
+  <font color="#0000FF">
+ describe(epi.df)      #use the describe function 
+</font>
+        var   n  mean   sd median trimmed  mad min max range  skew kurtosis   se
+epiE      1 231 13.33 4.14     14   13.49 4.45   1  22    21 -0.33    -0.06 0.27
+epiS      2 231  7.58 2.69      8    7.77 2.97   0  13    13 -0.57    -0.02 0.18
+epiImp    3 231  4.37 1.88      4    4.36 1.48   0   9     9  0.06    -0.62 0.12
+epilie    4 231  2.38 1.50      2    2.27 1.48   0   7     7  0.66     0.24 0.10
+epiNeur   5 231 10.41 4.90     10   10.39 4.45   0  23    23  0.06    -0.50 0.32
+
+</pre>
+
+
+
+ 
+<h3>Simple graphical descriptions: the stem and leaf diagram</h3>
+ 
+<pre><p>
+  <font color="#0000FF">
+ stem(bfneur)       #stem and leaf diagram 
+</font>
+  The decimal point is 1 digit(s) to the right of the |
+
+   3 | 45
+   4 | 26778
+   5 | 000011122344556678899
+   6 | 000011111222233344567888899
+   7 | 00000111222234444566666777889999
+   8 | 0011111223334444455556677789
+   9 | 00011122233333444555667788888888899
+  10 | 00000011112222233333444444455556667778899
+  11 | 000122222444556677899
+  12 | 03333577889
+  13 | 0144
+  14 | 224
+  15 | 2
+  
+</pre>
+<h3>Correlations </h3>
+<pre><p>
+ <font color="#0000FF">round(cor(epi.df),2)</font>   
+ #correlation matrix with values rounded to 2 decimals
+ 
+         epiE  epiS epiImp epilie epiNeur
+epiE     1.00  0.85   0.80  -0.22   -0.18
+epiS     0.85  1.00   0.43  -0.05   -0.22
+epiImp   0.80  0.43   1.00  -0.24   -0.07
+epilie  -0.22 -0.05  -0.24   1.00   -0.25
+epiNeur -0.18 -0.22  -0.07  -0.25    1.00
+
+
+ <font color="#0000FF">round(cor(epi.df,bfi.df),2)</font> 
+ #cross correlations between the 5 EPI scales and the 5 BFI scales
+ 
+       bfext bfneur bfagree bfcon bfopen
+epiE     0.54  -0.09    0.18 -0.11   0.14
+epiS     0.58  -0.07    0.20  0.05   0.15
+epiImp   0.35  -0.09    0.08 -0.24   0.07
+epilie  -0.04  -0.22    0.17  0.23  -0.03
+epiNeur -0.17   0.63   -0.08 -0.13   0.09
+
+</pre>
+
+<a name="graphics"></a>
+<h2 align="left">Graphical displays</h2>
+<p><A HREF="r.guide.html#Back to Top">Back to Top</a>
+<br><p>A quick overview of some of the graphic facilities.  See the <a href="r.graphics.html">r.graphics</a>  and the 
+<a href="r.plotregressions.html">plot regressions</a> and how to <a href="r.plottingdates.html">plot temporal data</a> pages for more details.  
+
+<p> For a stunning set of graphics produced with R and the code for drawing them, see addicted to R:
+
+<a href="http://addictedtor.free.fr/graphiques" target="_blank">
+R Graph Gallery</a> :
+<em>Enhance your data visualisation with R</em>.
+<pre>    
+<p>
+#see the graphic window for the output
+
+<font color="#0000FF">boxplot(epi)        #boxplot of the five epi scales
+hist(epiE)          #simple histogram
+plot(epiE,epiImp)    #simple scatter plot
+pairs(epi.df)           #splom plot</font>
+</pre>
+<p>boxplot(epi) 
+<p><img src="figures/box.jpg" alt="" width="360" height="270" align="bottom" align="left"> 
+<p>hist(epiE)
+<p><img src="figures/histogram.jpg" alt="" id="histogram" width="360" height="270" align="bottom"  align="right" >
+<br>plot(epiE,epiImp) #Simple scatter plot
+<br><img src="figures/scatter.jpg" alt="" id="simple scatter diagram" width="360" align="bottom" height="270" align="left">
+<br>pairs(epi) # Basic ScatterPlot Matrix (SPLOM)
+<br><img src="figures/splom.jpg" alt="" width="360" height="270" align="bottom" align="right">
+
+<p>
+<br> More advanced plotting (see <a href="r.graphics.html">r.graphics</a> and <a href="r.plotregressions.html">r.plotregressions</a> for details) <br>
+<img src="figures/epi.splom.jpg" alt="" id="fepi.splom" width="360" height="270" align="bottom" align="left"> 
+<img src="figures/heating.slopes.jpg" alt="" width="360" height="270"  align="bottom" align="right">
+
+<a name="anova"></a><h2 align="left">Inferential Statistics -- Analysis of Variance</h2>
+<p><A HREF="r.guide.html#Back to Top">Back to Top</a>
+<p>The following are examples of Analysis of Variance. A more complete listing and discussion of these examples including the output is in the <a href="r.anova.html">R.anova</a> page. This section just gives example instructions.  See also the <a href="http://www.psych.upenn.edu/~baron/rpsych/rpsych.html#SECTION00078000000000000000">ANOVA section of Jonathan Baron's page</a>.
+<br>
+
+<ul>
+
+<li> <a href="r.anova.html#oneway">One Way ANOVA</a>
+
+
+           
+<pre>
+<font color="#0000FF">#tell where the data come from
+datafilename="http://personality-project.org/r/datasets/R.appendix1.data"
+data.ex1=read.table(datafilename,header=T)   #read the data into a table
+
+aov.ex1 = aov(Alertness~Dosage,data=data.ex1)  #do the analysis of variance
+summary(aov.ex1)                                    #show the summary table
+print(model.tables(aov.ex1,"means"),digits=3)
+	#report the means and the number of subjects/cell
+boxplot(Alertness~Dosage,data=data.ex1)
+	#graphical summary appears in graphics window</font>
+</pre>
+
+
+
+<li><a href="r.anova.html#twoway"> Two Way (between subjects) Analysis of Variance (ANOVA)</a>
+
+<pre>
+
+<font color="#0000FF">datafilename="http://personality-project.org/R/datasets/R.appendix2.data"
+data.ex2=read.table(datafilename,header=T)   #read the data into a table
+data.ex2                                      #show the data
+aov.ex2 = aov(Alertness~Gender*Dosage,data=data.ex2)         #do the analysis of variance
+summary(aov.ex2)                                    #show the summary table
+print(model.tables(aov.ex2,"means"),digits=3)      
+	#report the means and the number of subjects/cell
+boxplot(Alertness~Dosage*Gender,data=data.ex2) 
+	#graphical summary of means of the 4 cells
+attach(data.ex2)
+interaction.plot(Dosage,Gender,Alertness)  #another way to graph the means 
+detach(data.ex2)
+</font>
+</pre>
+
+
+<li> <a href="r.anova.html#withinone">One way repeated Measures</a>
+
+<pre>
+              <font color="#0000FF">        #Run the analysis:
+datafilename="http://personality-project.org/r/datasets/R.appendix3.data"
+data.ex3=read.table(datafilename,header=T)   #read the data into a table
+data.ex3                                      #show the data
+aov.ex3 = aov(Recall~Valence+Error(Subject/Valence),data.ex3)
+summary(aov.ex3)
+print(model.tables(aov.ex3,"means"),digits=3)       
+	#report the means and the number of subjects/cell
+boxplot(Recall~Valence,data=data.ex3)          #graphical output
+</font>
+</pre>
+
+<li> <a href="r.anova.html#withintwo">Two way repeated measures </a>
+
+<pre><font color="#0000FF">
+datafilename="http://personality-project.org/r/datasets/R.appendix4.data"
+data.ex4=read.table(datafilename,header=T)   #read the data into a table
+ data.ex4                                      #show the data
+ aov.ex4=aov(Recall~(Task*Valence)+Error(Subject/(Task*Valence)),data.ex4 )
+
+summary(aov.ex4)
+print(model.tables(aov.ex4,"means"),digits=3)       
+	#report the means and the number of subjects/cell
+boxplot(Recall~Task*Valence,data=data.ex4) #graphical summary of means of the 6 cells
+attach(data.ex4)
+interaction.plot(Valence,Task,Recall)    #another way to graph the interaction
+detach(data.ex4)
+
+</font>
+</pre>
+
+</pre>
+
+
+<li> <a href="r.anova.html#mixed">4 way anova: 2 repeated measures and two between subjects</a>
+
+<pre><font color="#0000FF">
+datafilename="http://personality-project.org/r/datasets/R.appendix5.data"
+data.ex5=read.table(datafilename,header=T)   #read the data into a table
+#data.ex5                                      #show the data
+aov.ex5 = 
+aov(Recall~(Task*Valence*Gender*Dosage)+Error(Subject/(Task*Valence))+
+(Gender*Dosage),data.ex5)
+
+summary(aov.ex5)             
+print(model.tables(aov.ex5,"means"),digits=3)       
+	#report the means and the number of subjects/cell
+boxplot(Recall~Task*Valence*Gender*Dosage,data=data.ex5) 
+	#graphical summary of means of the 36 cells
+boxplot(Recall~Task*Valence*Dosage,data=data.ex5)
+	#graphical summary of means of  18 cells</font>
+</pre>
+</ul>
+
+<h2 align="left">Reorganizing the data for within subject analyses</h2>
+
+<p>The prior examples have assumed one line per unique subject/variable combination.  This is not a typical way to enter data.  A more typical way (found e.g., in Systat) is to have one row/subject.  We need to "stack" the data to go from the standard input to the form preferred by the analysis of variance.  Consider the following analyses of 27 subjects doing a memory study of the effect on  recall of two presentation rates and two recall intervals. Each subject has two replications per condition.  The first 8 columns are the raw data, the last 4 columns collapse across replications. The data are found in a file on the personality project server.
+
+<pre><p>
+<font color="#0000FF">datafilename="/Users/bill/Desktop/R.tutorial/datasets/recall1.data"
+recall.data=read.table(datafilename,header=TRUE)
+recall.data    #show the data</font>
+</pre>
+
+<p> We can use the "stack() function to arrange the data in the correct manner.  We then need to create a new data.frame (recall.df) to attach the correct labels to the correct conditions.  This seems more complicated than it really is (although it is fact somewhat tricky).  It is useful to list the data after the data frame operation to make sure that we did it correctly. (This and the next two examples are adapted from Baron and Li's page. )  We make use of the rep(), c(), and factor() functions.
+
+<br>  rep (operation,number) repeats an operation number times
+<br> c(x,y)  forms a vector with x and y elements
+<br> factor (vector) converts a numeric vector into factors for an ANOVA
+
+<p> More detail on this technique, with comparisons of the original data matrix to the stacked matrix to the data structure version is shown on the <a href="r.anova.html#stacking">r.anova</a> page.
+
+
+<pre><p>
+<font color="#0000FF">raw=recall.data[,1:8]              #just trial data 
+#First set some specific paremeters for the analysis -- this allows
+numcases=27                  #How many subjects are there?
+numvariables=8               #How many repeated measures are there?
+numreplications=2            #How many replications/subject?
+numlevels1=2                 #specify the number of levels for within subject variable 1
+numlevels2=2                 #specify the number of levels for within subject variable 2
+
+stackedraw=stack(raw)        #convert the data array into a vector 
+                             #add the various coding variables for the conditions
+                             #make sure to check that this coding is correct
+recall.raw.df=data.frame(recall=stackedraw,
+	subj=factor(rep(paste("subj", 1:numcases, sep=""), numvariables)),
+	replication=factor(rep(rep(c("1","2"), c(numcases, numcases)),
+		numvariables/numreplications)),
+	time=factor(rep(rep(c("short", "long"),
+		c(numcases*numreplications, numcases*numreplications)),numlevels1)),
+	study=rep(c("d45", "d90") ,c(numcases*numlevels1*numreplications,
+		numcases*numlevels1*numreplications)))
+  
+  
+recall.aov= aov(recall.values ~ time * study + Error(subj/(time * study)), data=recall.raw.df) 
+	#do the ANOVA
+summary(recall.aov)                                #show the output
+print(model.tables(recall.aov,"means"),digits=3)   #show the cell means for the anova table</font>
+
+</pre>
+<a name="linear"></a>
+<h2 align="left">Linear regression</h2>
+<p><A HREF="r.guide.html#Back to Top">Back to Top</a>
+<p>Many statistics used by psychologists and social scientists are special cases of the linear model (e.g., ANOVA is merely the linear model applied to categorical predictors).  Generalizations of the linear model include an even wider range of statistical models.
+
+<p> Consider the following models:
+<ul>
+	<li> y~x   or y~1+x    are both examples of simple linear regression with an implicit or explicit intercept.
+	<li> y~0+x  or y~ -1 +x or y~ x-1  linear regression through the origin
+	<li> y ~ A   where A is a matrix of categorical factors is a classic ANOVA model.
+	<li> y ~ A + x  is ANOVA with x as a covariate
+	<li> y ~A*B  or y~ A + B + A*B   ANOVA with interaction terms
+	<li> ...
+	
+
+</ul>
+
+<p>These models can be fitted with the linear model function (lm) and then various summary statistics are available of the fit.  The data set is our familiar set of Eysenck Personality Inventory and Big Five Inventory scales with Beck Depression and state and trait anxiety scales as well.  The first analysis just regresses BDI on EPI Neuroticism, then we add in Trait Anxiety, and then the N * trait Anx interaction.  Note that we need to 0 center the predictors when we have an interaction term if we expect to interpret the additive effects correctly.  Centering is done with the <b>scale ()</b> function.  Graphical summaries of the regession show four plots: residuals as a function of the fitted values, standard  errors of the residuals, a plot of the residuals versus a normal distribution, and finally, a plot of the leverage of subjects to determine outliers.  Models 5 and 6 predict bdi using the BFI, and model 7 (for too much fitting) looks at the epi and bfi and the interactions of their scales.  What follows are the commands for a number of demonstrations.  Samples of the commands and the output may be found in the <a href="r.lm.html">regression</a> page. <a href="r.regression.html">Further examples</a> show how to find regressions for multiple dependent variables or to find the regression weights from the correlation matrix rather than the raw data.
+
+<pre><font color="#0000FF"><p>
+datafilename="http://personality-project.org/r/datasets/maps.mixx.epi.bfi.data"  
+	#where are the data
+personality.data =read.table(datafilename,header=TRUE)  #read the data file
+names(personality.data)     #what variables are in the data set?
+attach(personality.data)    #make the variables easier to use
+model1 = lm(bdi~epiNeur)  #simple regression of  beck depression on Neuroticism
+summary(model1)   # basic statistical summary
+
+                  #pass parameters to the graphics device
+op <- par(mfrow = c(2, 2), # 2 x 2 pictures on one plot
+               pty = "s")       # square plotting region,
+                                # independent of device size
+
+    
+plot(model1)     #diagnostic plots in the graphics window
+
+model2=lm(bdi~epiNeur+traitanx)    #add in trait anxiety
+summary(model2)    #basic output
+plot(model2)
+
+anova(model1,model2)             #compare the difference between the two models
+model2.5=lm(bdi~epiNeur*traitanx) 
+	#test for the interaction, note that the main effects are incorrect
+summary(model2.5)               #because we need to 0 center the data
+anova(model2,model2.5)          #compare the two models 
+
+                                #rescale the data to do the analysis  
+cneur=scale(epiNeur,scale=F)    #0 center epiNeur
+zneur=scale(epiNeur,scale=T)     #standardize epiNeur
+ctrait = scale(traitanx,scale=F) #0 center traitAnx
+
+model3=lm(bdi~cneur+ctrait+cneur*ctrait)
+summary(model3)                    #explicitly list the additive and interactive terms
+plot(model3)</font>
+</pre>
+
+<img src="figures/lm3.jpg" alt="" width="569" height="496" align="bottom">
+
+<pre><p>
+<font color="#0000FF">model4=lm(bdi~cneur*ctrait)
+summary(model4)                    #note how this is exactly the same as the previous model
+
+
+
+
+epi=cbind(epiS,epiImp,epilie,epiNeur) 
+	#form a new variable "epi" without overall extraversion
+epi=as.matrix(epi)      #actually, more useful to treat this variable as a matrix
+
+bfi=as.matrix(cbind(bfext,bfneur,bfagree,bfcon,bfopen))    #create bfi as a matrix as well
+epi=scale(epi,scale=T)   #standardize the epi
+bfi=scale(bfi,scale=T)   #standardize the bfi
+
+model5=lm(bdi~bfi)                 #model beck depression by the Big 5 inventory
+summary(model5)
+model6=lm(bdi~bfi+epi)  		
+summary(model6)
+
+model7 = lm(bdi~bfi*epi)          
+	#additive model of epi and bfi as well as the interactions between the sets
+summary(model7)                   #given as an example of overfitting
+ ## At end of plotting, reset to previous settings:
+     par(op)
+     
+</font>
+</pre>
+
+<P> <a href="r.regression.html">Further examples</a> show how multiple regression can be done with multiple dependent variables at the same time and how regressions can be done based upon the correlation matrix rather than the raw data. 
+
+<p> In order to visualize interactions, it is useful to <a href="r.plotregressions.html">plot regression lines separately for different groups</a>. This is demonstrated in some detail in a real example based upon heating demands of two houses. 
+
+<a name="alpha"></a><h2>Scale Construction and Reliability</h2>
+<p><A HREF="r.guide.html#Back to Top">Back to Top</a>
+<p>(This section, written two years ago, shows how to do the analyses in "vanilla R".  I recommend installing the <b>psych</b> package from CRAN and using the more powerful functions in that pacakge.)
+
+<p> One of the most common problems in personality research is to combine a set of items into a scale.  Questions to ask of these items and the resulting scale are a) what are the item means and variances. b) What are the intercorrelations of the items in the scale. c) What are the correlations of the items with the composite scale. d) what is an estimate of the internal consistency reliability of the scale. (For a somewhat longer discussion of this, see the <a href="alpha.html">internal structure of tests</a>.)
+
+<p> The following steps analyze a small subset of the data of a large project (the synthetic aperture personality measurement project at the Personality, Motivation, and Cognition lab).  The data represent responses to five items sampled from items measuring extraversion, emotional stability, agreeableness, conscientiousness, and openness taken from the IPIP (International Personality Item Pool) for 200 subjects.  
+
+<pre><p>
+
+<font color="#0000FF">#get the data
+datafilename="http://personality-project.org/R/datasets/extraversion.items.txt" 
+	#where are the data
+
+items=read.table(datafilename,header=TRUE)                    #read the data
+
+attach(items)         #make this the active path
+E1=q_262 -q_1480 +q_819 -q_1180 +q_1742  +14  
+					#find a five item extraversion scale 
+                    #note that because the item responses ranged from 1-6, to reverse an item
+                    #we subtract it from the maximum response possible + the minimum.  
+                    #Since there were two reversed items, this is the same as adding 14
+
+
+E1.df = data.frame(q_262 ,q_1480 ,q_819 ,q_1180 ,q_1742 ) #put these items into a data frame
+
+summary(E1.df)                             #give summary statistics for these items
+round(cor(E1.df,use="pair"),2)             #correlate the 5 items, rounded off to 2 decimals,
+						use pairwise cases
+round(cor(E1.df,E1,use="pair"),2)          #show the item by scale correlations
+                                           #define a function to find the alpha coefficient
+
+alpha.scale=function (x,y)   #create a reusable function to find coefficient alpha
+	#input to the function are a scale and a data.frame of the items in the scale
+        {
+                Vi=sum(diag(var(y,na.rm=TRUE)))     #sum of item variance
+                Vt=var(x,na.rm=TRUE)                #total test variance
+                n=dim(y)[2]     #how many items are in the scale?  (calculated dynamically)
+                ((Vt-Vi)/Vt)*(n/(n-1))}             #alpha
+
+
+E.alpha=alpha.scale(E1,E1.df)  
+	#find the alpha for the scale E1 made up of the 5 items in E1.df 
+detach(items) 
+	#take them out of the search path   
+</font>
+
+</pre>
+<p> Produces the following output:
+
+<pre><p>
+
+<font color="#0000FF">summary(E1.df)                      #give summary statistics for these items</font>
+     q_262          q_1480          q_819           q_1180          q_1742     
+ Min.   :1.00   Min.   :0.000   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+ 1st Qu.:2.00   1st Qu.:2.000   1st Qu.:4.000   1st Qu.:2.000   1st Qu.:3.750  
+ Median :3.00   Median :3.000   Median :5.000   Median :4.000   Median :5.000  
+ Mean   :3.07   Mean   :2.885   Mean   :4.565   Mean   :3.295   Mean   :4.385  
+ 3rd Qu.:4.00   3rd Qu.:4.000   3rd Qu.:5.000   3rd Qu.:4.000   3rd Qu.:6.000  
+ Max.   :6.00   Max.   :6.000   Max.   :6.000   Max.   :6.000   Max.   :6.000  
+ 
+ 
+ 
+<font color="#0000FF">
+round(cor(E1.df,use="pair"),2)              
+	#correlate the 5 items, rounded off to 2 decimals, use complete cases</font>
+       q_262 q_1480 q_819 q_1180 q_1742
+q_262   1.00  -0.26  0.41  -0.51   0.48
+q_1480 -0.26   1.00 -0.66   0.52  -0.47
+q_819   0.41  -0.66  1.00  -0.41   0.65
+q_1180 -0.51   0.52 -0.41   1.00  -0.49
+q_1742  0.48  -0.47  0.65  -0.49   1.00
+
+
+<font color="#0000FF">round(cor(E1.df,E1,use="pair"),2)           #show the item by scale correlations</font>
+        [,1]
+q_262   0.71
+q_1480 -0.75
+q_819   0.80
+q_1180 -0.78
+q_1742  0.80
+
+alpha.scale=function (x,y)   
+	#find coefficient alpha given a scale and a data.frame of the items in the scale
++ 	{
++ 	Vi=sum(diag(var(y,na.rm=TRUE)))     #sum of item variance
++ 	Vt=var(x,na.rm=TRUE)                #total test variance
++   	n=dim(y)[2]                #how many items are in the scale? (calculated dynamically)
++   	((Vt-Vi)/Vt)*(n/(n-1))}    #alpha
+> 
+> 
+>
+
+E.alpha=alpha.scale(E1,E1.df,5)      
+	#find the alpha for the scale E1 made up of the 5 items in E1.df 
+
+E.alpha
+[1] 0.822683
+
+</pre>
+
+<h3>Using the alpha function from psych</h3>
+<p>Alternatively, this same analysis could have been done using the <b>alpha</b> function from the <b>psych</b> package:
+
+<pre><p>
+<font color="#0000FF">
+E1.df <- with(items,data.frame(q_262 ,q_1480 ,q_819 ,q_1180 ,q_1742 ))  
+	#another way to create the data.frame
+alpha(E1.df,keys=c(1,-1,1,-1,1)) #the keys vector specifies that two items are reverse scored.
+</font>
+
+> alpha(E1.df,keys=c(1,-1,1,-1,1))
+
+Reliability analysis   
+Call: alpha(x = E1.df, keys = c(1, -1, 1, -1, 1))
+
+  raw_alpha std.alpha G6(smc) average_r mean   sd
+      0.82      0.83    0.83      0.49  3.6 0.52
+
+ Reliability if an item is dropped:
+       raw_alpha std.alpha G6(smc) average_r
+q_262       0.82      0.82    0.80      0.53
+q_1480      0.79      0.80    0.76      0.49
+q_819       0.77      0.77    0.74      0.46
+q_1180      0.79      0.79    0.77      0.49
+q_1742      0.77      0.78    0.77      0.46
+
+ Item statistics 
+         n    r r.cor mean  sd
+q_262  200 0.70  0.58  3.1 1.5
+q_1480 200 0.76  0.70  2.9 1.4
+q_819  200 0.82  0.78  4.6 1.2
+q_1180 200 0.77  0.69  3.3 1.5
+q_1742 200 0.80  0.74  4.4 1.4
+
+</pre>
+<h3>Scoring multiple choice tests</h3>
+
+<p>If you are using multiple choice tests and want to score the items following a key, it is possible to use the power of R for data manipulation:
+
+<p)
+Consider the problem of scoring a multiple choice test where we are interested in the number of items correct for each person.   Define a  scoring key vector and then score as 1 each item match with that key.  Then find the number of 1s for each subject. We use the Iris data set as an example.
+
+<pre><p>
+iris2 <- round(iris[1:10,1:4])   #get a sample data set
+key <- iris2[1,]    #make up an arbitary answer key
+score <- t(t( rowSums((iris2 == c(key[]))+0)))   #look for correct item and add them up
+mydata <- data.frame(iris2,score)     #
+key         #what is the scoring key
+mydata      #show the data with the number of items that match the key
+</pre>
+
+<p>(Thanks to Gabor Grothendieck and R help for this trick.)
+
+
+<h2 align="center">Factor Analysis </h2>
+<a name="factoranal"></a><p>
+Core R includes a maximum likelihood factor analysis function (<b>factanal</b>) and the <b>psych </b> package includes five alternative factor extraction options within one function, <b> fa</b>.  
+
+For the following analyses, we will use data from the Motivational State Questionnaire (MSQ) collected in several studies.  This is a subset of a larger data set (with N>3000 that is being analyzed for the structure of mood states.  The data set includes EPI and BFI scale scores (see previous examples).  
+
+<pre><p>
+<font color="#0000FF">#specify the name and address of the remote file
+datafilename="http://personality-project.org/r/datasets/maps.mixx.msq1.epi.bf.txt"
+data =read.table(datafilename,header=TRUE)  #read the data file
+msq=data[,2:73]             #select the subset of items in the MSQ
+
+msq[msq=="9"] = NA       # change all occurences of 9 to be missing values 
+msq <- data.frame(msq)    #convert the input matrix into a data frame for easier manipulation
+
+names(msq)                        #what are the variables?
+describe(msq)                     #basic summary statistics -- check for miscodings
+
+cleaned=na.omit(msq)     #remove the cases with missing values
+f2=factanal(cleaned,2,rotation="varimax")   		#factor analyze the resulting item
+#(f2)                                              #show the result
+load=loadings(f2)
+print(load,sort=TRUE,digits=2,cutoff=0.01)  #show the loadings       
+plot(load)                                 #plot factor 1 by 2
+identify(load,labels=names(msq))           
+ 	#put names of selected points onto the figure  -- to stop, click with command key
+</font>
+</pre>
+<img src="figures/msq.jpg" alt="" width="548" height="615" align="bottom">
+<p> It is also possible to find and save the covariance matrix from the raw data and then do subsequent analyses on this matrix.  This clearly saves computational time for large data sets.  This matrix can be saved and then reloaded.
+
+
+
+<pre><p>
+<font color="#0000FF"> msqcovar=cov(msq,use="pair")  #find the covariance matrix for later factoring
+ f3=factanal(x, factors=3, data = NULL, covmat = msqcovar, n.obs = 300,start=NULL,
+ 	rotation = "varimax")
+ f4=factanal(x, factors=4, data = NULL, covmat = msqcovar, n.obs = 300,start=NULL,
+ 	rotation = "varimax")</font>
+</pre>
+
+<p>The <b>fa</b> function will do maximimum likelihood but defaults to do a minimum residual (min-res) solution with an oblimin rotation.  
+ 
+ <h3 align="left"><a id="VSS">Very Simple Structure</a></h3>
+ 
+ <p> There are multiple ways to determine the appropriate number of factors in exploratory factor analysis.  Routines for the <a href="vss.html">Very Simple Structure</a> (VSS) criterion allow one to compare solutions of varying complexity and for different number of factors.  Alternatives include the scree test.  To use these routines on a data set with items, myitems,:
+ 
+ <font color="#0000FF">
+<pre><p>
+library(psych)
+my.vss <- VSS(mydata,n=8,rotate="none",diagonal=FALSE,...)   #compares up to 8 factors
+op <- par(mfrow=c(1,2))  #make a two panel graph
+VSS.plot(my.vss)  #shows a simple summary of VSS
+VSS.scree(cor(mydata),main="scree plot of principal components of mydata")
+</pre>
+</font>
+ 
+ <br>
+ 
+<h3 align="left"> <a id="Omega">Omega: General Factor Saturation of a test</a></h3>
+
+<p>  McDonald has proposed coefficient omega as an estimate of the general factor saturation of a test.<a href="../revelle/publications/zinbarg.revelle.pmet.05.pdf">  Zinbarg, Revelle, Yovel and Li (2005</a>) compare McDonald's Omega to Chronbach's alpha and Revelle's beta.  They conclude that omega is the best estimate. (See also <a href="http://apm.sagepub.com/cgi/reprint/30/2/121">Zinbarg et al., 2006)   </a>
+
+<p>  <a href="r.omega.html">One way to find omega</a> is to do a factor analysis of the original data set, rotate the factors obliquely, do a Schmid Leiman transformation, and then find omega.  Here we present code to do that.  This code is included in the 
+psych package of routines for personality research that may be loaded from the CRAN repository or, for the the recent development version, from the local repository at  http://personality-project.org/r. 
+
+<h3 align="left"> <a id="Beta">Beta: General Factor Saturation of a test</a></h3>
+
+<p> Beta, an alternative to omega, is defined as the worst split half reliability.  It can be estimated by using ICLUST (<a href="../revelle/publications/iclust.pdf">Revelle, 1979)</a>, a hierarchical clustering algorithm originally developed for main frames and written in Fortran and that is <a href="r.ICLUST.html">now being developed in R</a>.  (For a very complimentary review of why the ICLUST algorithm is useful in scale construction, see <a href="http://orm.sagepub.com/cgi/content/abstract/9/1/78">Cooksey and Soutar, 2005</a>).  What took multiple years and about 2500 lines of code in Fortran has taken about 4 days and 100 lines of R.
+
+<h3 align="left">Factor rotations</h3>
+
+<p> Rotations available in the basic R installation are Varimax and Promax.  A powerful additional set of oblique transformations including Oblimin, Oblimax, etc. are available in the GPArotations package from Cran.  Using this package, it is also possible to do a Schmid Leiman transformation of a hierarchical factor structure to estimate the general factor loadings and general factor saturation of a test.  (see <a href="r.omega.html"> Omega </a>.
+
+<h3 align="left"><a id="cluster">Cluster Analysis</a></h3>
+
+<p>A common data reduction technique is to cluster cases (subjects).  Less common, but particularly useful in psychological research, is to cluster items (variables).  This may be thought of as an alternative to factor analysis, based upon a much simpler model.  The cluster model is that the correlations between variables reflect that each item loads on at most one cluster, and that items that load on those clusters correlate as a function of their respective loadings on that cluster and items that define different clusters correlate as a function of their respective cluster loadings and the intercluster correlations.  Essentially, the cluster model is a factor model of complexity one (see VSS). 
+
+<p> An example of clustering variables can be seen using the <a href="r.ICLUST.html">ICLUST</a> algorithm to the 24 tests of mental ability of Harman and then using the Graphviz program to show the results.
+
+<pre><p>
+<font color="#3300FF">
+r.mat<- Harman74.cor$cov
+ic.demo <- ICLUST(r.mat)
+ICLUST.graph(ic.demo,out.file = ic.demo.dot)</font>
+
+</pre> 
+<p>
+<a href="figures/iclust.graph.iq.jpg"><img src="figures/iclust.graph.iq.jpg" width="391" height="373" border="3" align="middle"></a>
+
+
+
+ 
+ <a name="mds"></a>
+ <h3 align="left">Multidimensional scaling</h3>
+ 
+ <p>Given a set of distances (dis-similarities) between objects, is it possible to recreate a dimensional representation of those objects?
+
+<p>
+<b>Model</b>: Distance = square root of sum of squared distances on k dimensions  
+<big>d</big><sub>xy</sub> = &#8730;&#8721;(<big>x</big><sub>i</sub>-<big>y</big><sub>i</sub>)<sup>2</sup>
+
+<p> <b>Data</b>: a matrix of distances
+<p> Find the dimensional values in k = 1, 2, ... dimensions for the objects that best reproduces the original data.
+<p> <b>Example</b>: Consider the distances between nine American cities.  Can we represent these cities in a two dimensional space.
+
+<p> See the pages on <a href="mds.html">multidimensional scaling</a> and <a href="thurstone.html">Thurstonian scaling</a>.
+
+<p> Jan de Leeuw at UCLA is converting a number of mds packages including the ALSCAL program for R.  See his page at <a href="http://www.cuddyvalley.org/psychoR/code">http://www.cuddyvalley.org/psychoR/code</a>.  ALSCAL generalizes the INDSCAL algorithm for individual differences in multiple dimensional scaling.  
+<br><br>
+<a name="sem"></a>
+<p><h1>Further topics</h1>
+<p><A HREF="r.guide.html#Back to Top">Back to Top</a>
+<h3> Structural Equation Modeling</h3>
+<p> Structural equation models combine measurement models (e.g., reliability) with structural models (e.g., regression).  The sem package, developed by John Fox, allows for some basic structural equation models.  To use it, add the <b>sem</b> package.  
+<p> Structural Equation Modeling may be thought of as regression corrected for attentuation.  The sem package developed by John Fox uses the RAM path notation of Jack McCardle and is fairly straightforward. Fox has prepared a<a href="http://socserv.socsci.mcmaster.ca/jfox/Books/Companion/appendix-sems.pdf"> brief description of SEM techniques</a> as an appendix to his statistics text.  The examples in the package are quite straightforward.  A text book, such as John Loehlin's Latent Variable Models (4th Edition) is helpful in understanding the algorithm.
+
+<p> <a href="r.sem.html">Demonstrations</a> of using the sem package for several of the Loehlin problems are discussed in more detail on a separate page.  In addition, lecture notes for a course on sem (primarily using R) are available at the<a href="http://personality-project.org/revelle/syllabi/454/454.syllabus.pdf"> syllabus for my sem </a>course.
+ 
+ 
+<a name="hlm"></a> <h2>Multilevel Models/ Hierarchical Level Models </h2>
+<p>HLM can be done using the lme package.  See the discussion in the R newsletter, Vol 3/3 by Lockwood, Doran, and McCaffrey. Also see the relevant pdf <a href="http://socserv.socsci.mcmaster.ca/jfox/Books/Companion/appendix.html">appendix</a> of John Fox's <a href="http://socserv.socsci.mcmaster.ca/jfox/Books/Applied-Regression/index.html">text on applied regression</a>. I have not yet tried out these techniques.
+
+<a name="irt"><h2 align="left">Item Response Theory using R</h2></a>
+<p>Item Response Theory is a model that considers individual differences in ability as well as item difficulty.  It is sometimes called the "new" psychometrics (as contrasted to "classic" <a href="../revelle/syllabi/405.syllabus.html">psychometrics</a> of traditional test theory.) Essentially, classic psychometrics estimates person scores by assuming items are random replicates of each other.  Precision of measurement is expressed in terms of the reliability which is the ratio of "true" score variance to total test variance. Reliability is thus a between person concept.  IRT estimates person scores as well as item difficulty (endorsement) scores.  Precision of measurement may be estimated in terms of the patterns of scores of a single individual and does not require between person variability.  Although the "new" and "classic" psychometrics give very similar estimates of person scores, the ability to do tailored tests and to consider the metric properties of the scales makes IRT very useful.  IRT models differ in their complexity.  The one parameter model assumes items all have equal discriminability and differ only in their difficulty.  The two parameter model assumes items differ in difficulty and discriminability, the three parameter model assumes items differ in the ease of guessing.  Although developed for binary items (correct versus incorrect), generalizations of IRT to multiresponse formats are very useful.  
+
+<p> For a detailed demonstration of how to do 1 parameter IRT (the Rasch Model) see Jonathan Baron and Yuelin Li's <a href="http://www.psych.upenn.edu/~baron/rpsych/rpsych.html#SECTION000712000000000000000">tutorial on R.</a>  A more useful package for latent trait modeling (e.g., Rasch modeling and item response theory) (<em>ltm</em>) has now been released by Dimitris Rizopoulos.  Note that to use this package, you must first install the MASS, gtools, and msm packages.
+
+<p> The ltm package allows for 1 parameter (Rasch) and two parameter (location and discrimination) modeling of a single latent trait assessed by binary items varying in location and discrimination.  Procedures include graphing the results as well as anova comparisons of nested models.  
+
+<a name="simulate"></a>
+<h2 align="left">Simulating data structures and probability tables</h2>
+<p><A HREF="r.guide.html#Back to Top">Back to Top</a>
+<p> There are at least 20 distributions available including the normal, the binomial, the exponential, the logistic, Poisson, etc.  Each of these can be accessed for density ('d'), cumulative density ('p'), quantile ('q') or simulation ('r' for random deviates). Thus, to find out the probability of a normal score of value x from a distribution with mean=m and sd = s, 
+<br> pnorm(x,mean=m, sd=s), eg.
+
+<pre><p>
+<font color="#0000FF">pnorm(1,mean=0,sd=1)</font>
+[1] 0.8413447
+same as 
+<font color="#0000FF">pnorm(1)       #default values of mean=0, sd=1 are used)
+pnorm(1,1,10)  #parameters may be passed if in default order or by name</font>
+
+</pre>
+
+<p>Examples of using R to demonstrate the <a href="distributions.html">central limit theorem</a> or to produce circumplex structure of personality items are useful ways to teach sampling theory or to explore artifacts in measurement.
+
+<p> Simulating a simple correlation between two variables based upon their correlation with a latent variable:
+<pre><p>
+<font color="#0000FF">samplesize=1000
+size.r=.6
+theta=rnorm(samplesize,0,1)      #generate some random normal deviates
+e1=rnorm(samplesize,0,1)         #generate errors for x
+e2=rnorm(samplesize,0,1)         #generate errors for y
+weight=sqrt(size.r)              #weight as a function of correlation
+x=weight*theta+e1*sqrt(1-size.r) #combine true score (theta) with error
+y=weight*theta+e2*sqrt(1-size.r)
+cor(x,y)                          #correlate the resulting pair
+df=data.frame(cbind(theta,e1,e2,x,y))  #form a data frame to hold all of the elements
+round(cor(df),2)               #show the correlational structure
+pairs.panels(df)                #plot the correlational structure (assumes psych package)
+</pre>
+</font>
+
+<p> The use of the mvtnorm package and the rmvnorm(n, mean, sigma) function allows for creating  random covariance matrices with a specific structure. 
+<br> e.g., using the sample sizes and rs from above:
+<pre><p>
+<font color="#0000FF">
+library(mvtnorm)
+samplesize=1000
+size.r=.6
+sigmamatrix <- matrix( c(1,sqrt(size.r),sqrt(size.r),sqrt(size.r),1,size.r,
+	sqrt(size.r),size.r,1),ncol=3)
+xy <- rmvnorm(samplesize,sigma=sigmamatrix)
+round(cor(xy),2)
+pairs.panels(xy) 	#assumes the psych package
+</pre>
+</font>
+
+<p> <a href="r.datageneration.html">Another simulation</a> shows how to create a multivariate structure with a particular measurement model and a particular structural model.  This example produces data suitable for demonstrations of regression, correlation, factor analysis, or structural equation modeling.
+
+<p> The particular example assumes that there are 3 measures of ability (GREV, GREQ, GREA), two measures of motivation (achievment motivation and anxiety), and three measures of performance (Prelims, GPA, MA).  These titles are, of course, arbitrary and can be changed easily.  These (simulated) data are used in various lectures of mine on Factor Analysis and Psychometric Theory.  Other examples of simulation of item factor structure include creating circumplex structured correlation matrices.  
+
+<P> Simulations may also be used to teach <a href="simulating-personality.html">concepts in experimental design</a> and analysis.  Several simulations of the additive and interactive effects of personality traits with situational manipulations of mood and arousal compare alternative ways of analyzing data.  
+
+<p> Finally, a simple simulation to generate and test <a href="circumplex.html">circumplex</a> versus structures in two dimensions has been added. 
+
+<a id="adding" name="adding"></a>
+<h3 align="left">Adding new commands (functions) packages or libraries</h3>
+<p><A HREF="r.guide.html#Back to Top">Back to Top</a>
+
+<p> A very powerful feature of R is that it is extensible.  That is, one can write one's own functions to do calculations of particular interest.  These functions can be saved as external file that can be accessed using the <b>source</b> command.  For example, I frequently use a set of routines that    find the alpha reliability of a set of scales, or to draw scatter plots with histograms on the diagonal and font sizes scaled to the absolute value of the correlation.  Another set of routines applies the Very Simple Structure (VSS) criterion for determining the optimal number of factors.  I originally stored these two sets of files (<a href="vss.html">vss</a>.r and <a href="r.useful.html">useful</a>.r) and then added them into my programs by using the source command.  
+
+
+<font color="#0000FF">
+<pre><p>
+source("http://personality-project.org/r/useful.r")  #some basic data manipulation procedures
+source("http://personality-project.org/r/vss.r")     #the Very Simple Structure package
+</pre></font>
+
+<p> However, an even more powerful option is to create packages of frequently used code.  These packages can be stored on local "repositories" if they appeal to members of small work groups, or can be added to the CRAN master repository.  Guidelines for creating packages are found in the basic help menus. <a href="makingpackages.html"> Notes on how to create a specific package</a> (i.e., the psych package) and install it as a repository are meant primarily for Mac users.  More extensive discussions for PCs have also been developed. 
+
+<p> psych was added to CRAN in about 2006 and is now up to version 1.0.92.  As I find an analysis that I need to do that is not easily done using the standard packages, I supplement the psych package.  I encourage the reader to try it.  The manual is available <a href="psych.manual.pdf">on line </a>or as part of the package. 
+
+<p> To add a package from CRAN (e.g, sem, GPArotation, psych), go to the R package installer, and select install.  Then, using the R package Manager, load that package.  
+
+<p>Although it is possible to add the <a href="http://cran.r-project.org/web/packages/psych/index.html">psych package</a>  from the personality-project.org web page, it is a better idea to use <a href="http://cran.r-project.org/">CRAN</a>. 
+
+You can select the other repository option in the R Package Installer and set it to http://personality-project.org/r . A list of available packages stored there will be displayed.  Choose the one you want and then load it with the R package manager.  Currently, there is only one package (psych) there.  This version will be the current development version will  be at least as new as what is on the CRAN site.   You must specify that you want a source file if use the personality-project.org/r  repository.
+
+As of now (October 23, 2010), the <a href="http://cran.r-project.org/web/packages/psych/index.html">psych package</a> contains more than a 120 functions including the  following ones:
+
+<table width="100%">
+<tr><td width="25%"><a href="Rfunc/00.psych-package.R">psych-package</a></td>
+<td>A package for personality, psychometric, and psychological research </td></tr>
+<tr><td width="25%"><a href="Rfunc/matrix.addition.R">%+%</a></td>
+<td>A function to add two vectors or matrices </td></tr>
+<tr><td width="25%"><a href="Rfunc/alpha.scale.R">alpha.scale</a></td>
+<td>Cronbach alpha for a scale </td></tr>
+<tr><td width="25%"><a href="Rfunc/circ.sim.R">circ.sim</a></td>
+<td>Generate simulated data structures for circumplex or simple structure </td></tr>
+<tr><td width="25%"><a href="Rfunc/circ.simulation.R">circ.simulation</a></td>
+<td>Simulations of circumplex and simple structure</td></tr>
+<tr><td width="25%"><a href="Rfunc/circ.tests.R">circ.tests</a></td>
+<td>Apply four tests of circumplex versus simple structure </td></tr>
+<tr><td width="25%"><a href="Rfunc/cluster.cor.R">cluster.cor</a></td>
+<td>Find correlations of composite variables from a larger matrix</td></tr>
+<tr><td width="25%"><a href="Rfunc/cluster.fit.R">cluster.fit</a></td>
+<td>cluster Fit:  fit of the cluster model to a correlation matrix </td></tr>
+<tr><td width="25%"><a href="Rfunc/cluster.loadings.R">cluster.loadings</a></td>
+<td>Find item by cluster correlations, corrected for overlap and reliability </td></tr>
+<tr><td width="25%"><a href="Rfunc/correct.cor.R">correct.cor</a></td>
+<td>Find dis-attenuated correlations and give alpha reliabilities </td></tr>
+<tr><td width="25%"><a href="Rfunc/count.pairwise.R">count.pairwise</a></td>
+<td>Count number of pairwise cases for a data set with missing (NA) data. </td></tr>
+<tr><td width="25%"><a href="Rfunc/describe.R">describe</a></td>
+<td>Basic descriptive statistics useful for psychometrics </td></tr>
+<tr><td width="25%"><a href="Rfunc/describe.by.R">describe.by</a></td>
+<td>Basic summary statistics by group</td></tr>
+<tr><td width="25%"><a href="Rfunc/eigen.loadings.R">eigen.loadings</a></td>
+<td>Extract eigen vectors, eigen values, show loadings</td></tr>
+<tr><td width="25%"><a href="Rfunc/error.crosses.R">error.crosses</a></td>
+<td>Plot x and y error bars </td></tr>
+<tr><td width="25%"><a href="Rfunc/factor.congruence.R">factor.congruence</a></td>
+<td>Coefficient of factor congruence </td></tr>
+<tr><td width="25%"><a href="Rfunc/factor.fit.R">factor.fit</a></td>
+<td>How well does the factor model fit a correlation matrix. Part of the VSS package </td></tr>
+<tr><td width="25%"><a href="Rfunc/factor.model.R">factor.model</a></td>
+<td>Find R =  F F' + U2 is the basic factor model </td></tr>
+<tr><td width="25%"><a href="Rfunc/fa.R">fa</a></td>
+<td>Minimum Residual, Principal Axis, GLS, MLE factor analysis</td></tr>
+<tr><td width="25%"><a href="Rfunc/factor.pa.R">factor.pa</a></td>
+<td>Principal Axis Factor Analysis</td></tr>
+<tr><td width="25%"><a href="Rfunc/factor.residuals.R">factor.residuals</a></td>
+<td>R* =  R- F F' </td></tr>
+<tr><td width="25%"><a href="Rfunc/factor.rotate.R">factor.rotate</a></td>
+<td>"Hand" rotate a factor loading matrix </td></tr>
+<tr><td width="25%"><a href="Rfunc/factor2cluster.R">factor2cluster</a></td>
+<td>Extract cluster definitions from factor loadings </td></tr>
+<tr><td width="25%"><a href="Rfunc/fisherz.R">fisherz</a></td>
+<td>Fisher z transform of r</td></tr>
+<tr><td width="25%"><a href="Rfunc/geometric.mean.R">geometric.mean</a></td>
+<td>Find the geometric mean of a vector or columns of a data.frame. </td></tr>
+<tr><td width="25%"><a href="Rfunc/harmonic.mean.R">harmonic.mean</a></td>
+<td>Find the harmonic mean of a vector, matrix, or columns of a data.frame</td></tr>
+<tr><td width="25%"><a href="Rfunc/ICLUST.R">ICLUST</a></td>
+<td>ICLUST: Item Cluster Analysis   - Hierarchical cluster analysis using psychometric principles </td></tr>
+<tr><td width="25%"><a href="Rfunc/ICLUST.R">ICLUST</a></td>
+<td>iclust: Item Cluster Analysis   - Hierarchical cluster analysis using psychometric principles </td></tr>
+<tr><td width="25%"><a href="Rfunc/ICLUST.cluster.R">ICLUST.cluster</a></td>
+<td>Function to form hierarchical cluster analysis of items </td></tr>
+<tr><td width="25%"><a href="Rfunc/ICLUST.graph.R">ICLUST.graph</a></td>
+<td>create control code for ICLUST graphical output</td></tr>
+<tr><td width="25%"><a href="Rfunc/ICLUST.sort.R">ICLUST.sort</a></td>
+<td>sort items by absolute size of cluster loadins</td></tr>
+<tr><td width="25%"><a href="Rfunc/irt.fa.R">irt.fa</a></td>
+<td>Item Response Theory using factor analysis of tetrachoric or polychoric correlations</td></tr>
+<tr><td width="25%"><a href="Rfunc/irt.person.rasch.R">irt.0p</a></td>
+<td>Item Response Theory estimate of theta (ability) using a Rasch (like) model</td></tr>
+<tr><td width="25%"><a href="Rfunc/irt.person.rasch.R">irt.1p</a></td>
+<td>Item Response Theory estimate of theta (ability) using a Rasch (like) model</td></tr>
+<tr><td width="25%"><a href="Rfunc/irt.person.rasch.R">irt.2p</a></td>
+<td>Item Response Theory estimate of theta (ability) using a Rasch (like) model</td></tr>
+<tr><td width="25%"><a href="Rfunc/irt.item.diff.rasch.R">irt.discrim</a></td>
+<td>Simple function to estimate item difficulties using IRT concepts</td></tr>
+<tr><td width="25%"><a href="Rfunc/irt.item.diff.rasch.R">irt.item.diff.rasch</a></td>
+<td>Simple function to estimate item difficulties using IRT concepts</td></tr>
+<tr><td width="25%"><a href="Rfunc/irt.person.rasch.R">irt.person.rasch</a></td>
+<td>Item Response Theory estimate of theta (ability) using a Rasch (like) model</td></tr>
+<tr><td width="25%"><a href="Rfunc/kurtosi.R">kurtosi</a></td>
+<td>Kurtosis of a vector, matrix, or data frame</td></tr>
+<tr><td width="25%"><a href="Rfunc/make.hierarchical.R">make.hierarchical</a></td>
+<td>Create a population or sample correlation matrix with hierachical structure. </td></tr>
+<tr><td width="25%"><a href="Rfunc/mat.regress.R">mat.regress</a></td>
+<td>Multiple Regression from matrix input</td></tr>
+<tr><td width="25%"><a href="Rfunc/multi.hist.R">multi.hist</a></td>
+<td>Multiple histograms on one screen</td></tr>
+<tr><td width="25%"><a href="Rfunc/omega.R">omega</a></td>
+<td>Calculate the omega estimate of factor saturation</td></tr>
+<tr><td width="25%"><a href="Rfunc/paired.r.R">paired.r</a></td>
+<td>Test the difference between paired correlations </td></tr>
+<tr><td width="25%"><a href="Rfunc/pairs.panels.R">pairs.panels</a></td>
+<td>SPLOM, histograms and correlations for a data matrix</td></tr>
+<tr><td width="25%"><a href="Rfunc/pairs.panels.R">panel.cor</a></td>
+<td>SPLOM, histograms and correlations for a data matrix</td></tr>
+<tr><td width="25%"><a href="Rfunc/pairs.panels.R">panel.hist</a></td>
+<td>SPLOM, histograms and correlations for a data matrix</td></tr>
+<tr><td width="25%"><a href="Rfunc/phi.R">phi</a></td>
+<td>Find the phi coefficient of correlation between two dichotomous variables </td></tr>
+<tr><td width="25%"><a href="Rfunc/phi2poly.R">phi2poly</a></td>
+<td>Convert a phi coefficient to a polychoric correlation </td></tr>
+<tr><td width="25%"><a href="Rfunc/polychoric.R">polychoric</a></td>
+<td>Find polychoric correlations </td></tr>
+<tr><td width="25%"><a href="Rfunc/principal.R">principal</a></td>
+<td>Principal components analysis </td></tr>
+<tr><td width="25%"><a href="Rfunc/00.psych-package.R">psych</a></td>
+<td>A package for personality, psychometric, and psychological research </td></tr>
+<tr><td width="25%"><a href="Rfunc/psycho.demo.R">psycho.demo</a></td>
+<td>Create demo data for psychometrics </td></tr>
+<tr><td width="25%"><a href="Rfunc/read.clipboard.R">read.clipboard</a></td>
+<td>shortcut for reading from the clipboard</td></tr>
+<tr><td width="25%"><a href="Rfunc/schmid.R">schmid</a></td>
+<td>Apply the Schmid Leiman transformation to a correlation matrix</td></tr>
+<tr><td width="25%"><a href="Rfunc/score.alpha.R">score.alpha</a></td>
+<td>Score scales and find Cronbach's alpha as well as associated statistics</td></tr>
+<tr><td width="25%"><a href="Rfunc/score.items.R">score.items</a></td>
+<td>Score item composite scales and find Cronbach's alpha as well as associated statistics </td></tr>
+<tr><td width="25%"><a href="Rfunc/skew.R">skew</a></td>
+<td>Calculate skew for a vector, matrix, or data.frame</td></tr>
+<tr><td width="25%"><a href="Rfunc/VSS.R">VSS</a></td>
+<td>Apply the Very Simple Structure criterion to determine the appropriate number of factors.</td></tr>
+<tr><td width="25%"><a href="Rfunc/VSS.parallel.R">VSS.parallel</a></td>
+<td>Compare real and random VSS solutions</td></tr>
+<tr><td width="25%"><a href="Rfunc/VSS.plot.R">VSS.plot</a></td>
+<td>Plot VSS fits</td></tr>
+<tr><td width="25%"><a href="Rfunc/VSS.scree.R">VSS.scree</a></td>
+<td>Plot a scree test</td></tr>
+<tr><td width="25%"><a href="Rfunc/VSS.simulate.R">VSS.simulate</a></td>
+<td>create VSS like data</td></tr>
+
+</table>
+
+The manual for the psych package is available at <a href="http://cran.r-project.org/web/packages/psych/psych.pdf">CRAN</a> as well as <a href="http://personality-project.org/r/psych.manual.pdf">here</a>
+<p> To install the psych package using a Mac, go to the Package Installer Menu option, choose binary, and then psych and it should get the package.  To get the most recent release of psych, you can go the personality-project.org repository. (Use other repository in the download packages menu.) Uncheck the "binary" option.  This is a source file.
+
+<p> To install on a PC, just use the version on CRAN.  Use the package installer option and choose psych.
+
+<p> Once installed, the package can be activated by using the package manager (or just issuing the package(psych) command.
+
+<a name="commands"></a><h3 align="left">A (partial) list of useful commands </h3>
+<p><A HREF="r.guide.html#Back to Top">Back to Top</a>
+
+<p>See <a href="r.commands.html">A short summary</a> of useful R commands for more detail.  In addition, the<a href="http://www.rpad.org/Rpad/Rpad-refcard.pdf"> Rpad.pdf reference card</a> file is a very important aid to remembering the many commands available. 
+
+
+<h5 align="left">Input and display</h5>
+<pre><p>                                           #read files with labels in first row
+read.table(filename,header=TRUE)           #read a tab or space delimited file
+read.table(filename,header=TRUE,sep=',')   #read csv files (comma separated)
+
+x=c(1,2,4,8,16 )                             #create a data vector with specified elements
+y=c(1:8,1:4)                               #creat a data vector with 12 entries
+matr=rbind(1:8,1:4)                         #create two rows in a    2 * 8 matrix
+matc=cbind(1:8,1:4)                         #create two columns in a 8 * 2 matrix
+n=10
+x1=c(rnorm(n))                              #create a n item vector of random normal deviates
+y1=c(runif(n))+n         
+	#create another n item vector that has n added to each random uniform distribution
+z=rbinom(n,size,prob)                      
+	#create n samples of size "size" with probability prob from the binomialitem
+sample(x, size, replace = FALSE, prob = NULL)  
+	#take a sample (with or without replacement) of size from x
+
+vect=c(x,y)                                #combine them into one vector of length 2n
+mat=cbind(x,y)                             #combine them into a n x 2 matrix (column wise)
+mat[4,2]                                   #display the 4th row and the 2nd column
+mat[3,]                                    #display the 3rd row
+mat[,2]                                    #display the 2nd column
+mat=cbind(rep(1:4,2),rep(4:1,2))           #create a 8 * 2 matrix with repeating elements
+subset(data,logical)                       #those objects meeting a logical criterion
+subset(data.df,select=variables,logical)  
+	#get those objects from a data frame that meet a criterion 
+
+
+</pre>
+
+<h5 align="left">moving around</h5>
+<pre><p>
+ls()                                 #list the variables in the workspace
+rm(x)                                #remove x from the workspace
+rm(list=ls())                        #remove all the variables from the workspace
+attach(mat)                          #make the names of the variables in the matrix available
+detach(mat)                          #releases the names
+new=old[,-n]                         #drop the nth column
+new=old[n,]                          #drop the nth row
+new=subset(old,logical)              #select those cases that meet the logical condition
+complete = subset(data,complete.cases(data)) 
+	#find those cases with no missing values
+new=old[n1:n2,n3:n4]              #select the n1 through n2 rows of variables n3 through n4)
+
+</pre>
+
+<h5>data manipulation</h5>
+
+<pre><p>
+
+x.df=data.frame(x1,x2,x3 ...)        #combine different kinds of data into a data frame
+	as.data.frame()
+	is.data.frame()
+x=as.matrix()
+scale()         #converts a data frame to standardized scores
+factor() 	#converts a numeric variable into a factor (essential for ANOVA)
+gl(n,k,length)	#makes an n-level,k replicates, length long vectof factors
+y <- edit(x) 	#opens a screen editor and saves changes made to x intoy
+fix(x)		#opens a screen editor window and makes and saves changes to x
+
+</pre>
+<h5>Statistics and transformations</h5>
+
+<pre>
+ max()
+ min()
+ mean()
+ median()
+ sum()
+ var()     		#produces the variance covariance matrix
+ sd()      		#standard deviation
+ mad()     		#(median absolute deviation)
+ fivenum() 		#Tukey fivenumbers min, lowerhinge, median, upper hinge, max
+ scale(data,scale=T)   	#centers around the mean and scales by the sd)
+ colSums(), rowSums(), colMeans(), rowMeans()   #see also apply(x,1,sum)
+ rowsum(x,group)     	#sum by group
+ 
+ cor(x,y,use="pair")   
+ 	#correlation matrix for pairwise complete data, use="complete" for complete cases
+ 
+ t.test(x,y) #x is a data vector, y is a grouping vector  independent groups
+ t.test(x,y,pair=TRUE) #x is a data vector, y is a grouping vector --  paired groups
+ pairwise.t.test(x,g) does multiple comparisons of all groups defined by g
+ 
+ aov(x~y,data=datafile)  #where x and y can be matrices
+	 aov.ex1 = aov(Alertness~Dosage,data=data.ex1)  
+	 	#do the analysis of variance or
+	 aov.ex2 = aov(Alertness~Gender*Dosage,data=data.ex2)         
+	 	#do a two way analysis of variance
+	summary(aov.ex1)                                    
+		#show the summary table
+	print(model.tables(aov.ex1,"means"),digits=3)       
+		#report the means and the number of subjects/cell
+	boxplot(Alertness~Dosage,data=data.ex1)       
+		#graphical summary appears in graphics window
+
+ lm(x~y,data=dataset)                      #basic linear model where x and y can be matrices
+ 
+ lm(Y~X)                                 #Y and X can be matrices
+ lm(Y~X1+X2)
+ lm(Y~X|W)                               #separate analyses for each level of W                             
+ solve(A,B)                              #inverse of A * B   - used for linear regression
+ solve(A)                                #inverse of A
+ 
+</pre>
+
+<h5>Useful additional commands</h5>
+<pre>
+     colSums (x, na.rm = FALSE, dims = 1)
+     rowSums (x, na.rm = FALSE, dims = 1)
+     colMeans(x, na.rm = FALSE, dims = 1)
+     rowMeans(x, na.rm = FALSE, dims = 1)
+     rowsum(x, group, reorder = TRUE, ...)         
+     	#finds row sums for each level of a grouping variable
+     apply(X, MARGIN, FUN, ...)                   
+     	#applies the function (FUN) to either rows (1) or columns (2) on object X
+     apply(x,1,min)                            
+    	#finds the minimum for each row
+     apply(x,2,max)                            
+     	#finds the maximum for each column
+     col.max(x)                                   
+     	#another way to find which column has the maximum value for each row 
+     which.min(x)
+     which.max(x)
+     z=apply(big5r,1,which.min)               
+     	#tells the row with the minimum value for every column
+ 
+</pre>
+
+<h5 align="left">Graphics</h5>
+<pre><p>
+
+stem()                                   #stem and leaf diagram
+
+par(mfrow=c(2,1))                        #number of rows and columns to graph
+
+boxplot(x,notch=T,names= grouping, main="title")                  #boxplot (box and whiskers)
+
+hist()                                   #histogram
+plot()
+  plot(x,y,xlim=range(-1,1),ylim=range(-1,1),main=title)
+  par(mfrow=c(1,1))     #change the graph window back to one figure
+  symb=c(19,25,3,23)
+  colors=c("black","red","green","blue")
+  charact=c("S","T","N","H")
+  plot(x,y,pch=symb[group],col=colors[group],bg=colors[condit],cex=1.5,main="main title")
+  points(mPA,mNA,pch=symb[condit],cex=4.5,col=colors[condit],bg=colors[condit])
+	
+curve()
+  abline(a,b)
+  abline(a, b, untf = FALSE, ...)
+  abline(h=, untf = FALSE, ...)
+  abline(v=, untf = FALSE, ...)
+  abline(coef=, untf = FALSE, ...)
+  abline(reg=, untf = FALSE, ...)
+
+identify()
+	plot(eatar,eanta,xlim=range(-1,1),ylim=range(-1,1),main=title)
+	identify(eatar,eanta,labels=labels(energysR[,1])  )       
+		#dynamically puts names on the plots
+locate()
+pairs()                                  #SPLOM (scatter plot Matrix)
+
+matplot ()                             #ordinate is row of the matrix
+biplot ()                              #factor loadings and factor scores on same graph
+coplot(x~y|z)                          #x by y conditioned on z
+symb=c(19,25,3,23)                              #choose some nice plotting symbols
+colors=c("black","red","green","blue")          #choose some nice colors
+
+barplot()                  #simple bar plot
+interaction.plot ()         #shows means for an ANOVA design
+
+plot(degreedays,therms)               #show  the data points
+by(heating,Location,function(x) abline(lm(therms~degreedays,data=x)))  
+	#show the best fitting regression for each group
+
+
+x= recordPlot()            #save the current plot device output in the object x
+replayPlot(x)              #replot object x
+dev.control                #various control functions for printing/saving graphic files
+</pre>
+
+</td>
+</tr>
+</table>
+
+<hr>
+<small>
+<CENTER>part of a <a href="r.guide.html">short guide to R</a></CENTER>    <!-- end .content --></div>
+
+  <div class="footer">
+    <p>See also <a href="http://www.personalityresearch.org/">Great Ideas in Personality</a> by Scott Acton,  <a href="http://www.ship.edu/~cgboeree/perscontents.html">Personality Theories: An Electronic Textbook</a> by C. George Boeree <br /> and the <a href="http://personalitypedagogy.arcadia.edu/pmwiki/pmwiki.php?n=Main.HomePage">personality pedagogy wiki</a> maintained by Marianne Miserandino.</p>
+     <p> Take the<a href="http://test.personality-project.org"> Big 5 personality test</a> to get feedback on your personality in terms of five broad factors of personality.
+    <p> Comments, criticism, suggestions for additions or deletions, etc.
+should be sent to 
+<BR><A HREF="revelle.html">William Revelle</A>
+<BR> email:  <A HREF="mailto:revelle@northwestern.edu">revelle@northwestern.edu</A></p>
+    <!-- end .footer --></div>
+  <!-- end .container --></div>
+</body>
+</html>

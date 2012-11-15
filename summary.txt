@@ -1,0 +1,78 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+summary(allCallsNAN)
+   My_hashNum         Date               Event          Contact       
+ Min.   :  2.00   Length:181270      Min.   :    0   Min.   :  -1.00  
+ 1st Qu.: 22.00   Class :character   1st Qu.:  772   1st Qu.:  -1.00  
+ Median : 49.00   Mode  :character   Median : 1719   Median :   2.00  
+ Mean   : 49.22                      Mean   : 2295   Mean   :  37.13  
+ 3rd Qu.: 74.00                      3rd Qu.: 3319   3rd Qu.:  32.00  
+ Max.   :106.00                      Max.   :12962   Max.   :1875.00  
+                                                                      
+     Description.V1       Direction.V1       Duration         hashNum     
+ Data call    :    16   DURATION:    25   Min.   :-48971   Min.   :    4  
+ MMS DIRECTION:    25   Incoming: 58135   1st Qu.:     0   1st Qu.: 1146  
+ Packet Data  : 18570   Missed  : 16035   Median :    23   Median : 3497  
+ Short message: 34116   Outgoing:107075   Mean   :   246   Mean   : 3841  
+ Voice call   :128543                     3rd Qu.:    75   3rd Qu.: 5876  
+                                          Max.   : 86696   Max.   :10056  
+                                          NA's   : 16060   NA's   :40567  
+> allCallsNAN=read.table("clusterCalls.csv", header=TRUE,sep=';',colClasses="character")
+> allCallsNAN$My_hashNum <- as.numeric(allCallsNAN$My_hashNum)
+> allCallsNAN$Date <- as.Date(allCallsNAN$Date)
+> allCallsNAN$Event <- as.numeric(allCallsNAN$Event)
+> allCallsNAN$Contact <- as.numeric(allCallsNAN$Contact)
+> allCallsNAN$Description <- as.matrix(allCallsNAN$Description)
+> allCallsNAN$Duration <- as.numeric(allCallsNAN$Duration)
+> allCallsNAN$hashNum <- as.numeric(allCallsNAN$hashNum)
+> allCallsNAN$weekend1weekday0 <- as.numeric(allCallsNAN$weekend1weekday0)
+> allCallsNAN$day1night0 <- as.numeric(allCallsNAN$day1night0)
+> allCallsNAN$out1in0 <- as.numeric(allCallsNAN$out1in0)
+> allCallsNAN$missed1 <- as.numeric(allCallsNAN$missed1)
+> allCallsNAN$packet1 <- as.numeric(allCallsNAN$packet1)
+> allCallsNAN$SMS1 <- as.numeric(allCallsNAN$SMS1)
+> allCallsNAN$MMS1 <- as.numeric(allCallsNAN$MMS1)
+> allCallsNAN$dataCall1 <- as.numeric(allCallsNAN$dataCall1)
+> allCallsNAN$VoiceCall1 <- as.numeric(allCallsNAN$VoiceCall1)
+> allCallsNAN$Duration1 <- as.numeric(allCallsNAN$Duration1)
+> summary(allCallsNAN)
+   My_hashNum          Date                Event          Contact       
+ Min.   :  2.00   Min.   :2004-01-19   Min.   :    0   Min.   :  -1.00  
+ 1st Qu.: 22.00   1st Qu.:2004-10-25   1st Qu.:  772   1st Qu.:  -1.00  
+ Median : 49.00   Median :2004-12-05   Median : 1719   Median :   2.00  
+ Mean   : 49.22   Mean   :2004-12-16   Mean   : 2295   Mean   :  37.13  
+ 3rd Qu.: 74.00   3rd Qu.:2005-02-02   3rd Qu.: 3319   3rd Qu.:  32.00  
+ Max.   :106.00   Max.   :2005-07-15   Max.   :12962   Max.   :1875.00  
+     Description.V1      Direction            Duration           hashNum     
+ Data call    :    16   Length:181270      Min.   :-48971.0   Min.   :    0  
+ MMS DIRECTION:    25   Class :character   1st Qu.:     0.0   1st Qu.:   60  
+ Packet Data  : 18570   Mode  :character   Median :    16.0   Median : 2237  
+ Short message: 34116                      Mean   :   224.2   Mean   : 2981  
+ Voice call   :128543                      3rd Qu.:    65.0   3rd Qu.: 5318  
+                                           Max.   : 86696.0   Max.   :10056  
+ weekend1weekday0    day1night0        out1in0          missed1 
+ Min.   :0.00000   Min.   :0.0000   Min.   :0.0000   Min.   :0  
+ 1st Qu.:0.00000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0  
+ Median :0.00000   Median :0.0000   Median :1.0000   Median :0  
+ Mean   :0.06085   Mean   :0.4858   Mean   :0.5907   Mean   :0  
+ 3rd Qu.:0.00000   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:0  
+ Max.   :1.00000   Max.   :1.0000   Max.   :1.0000   Max.   :0  
+    packet1            SMS1             MMS1             dataCall1        
+ Min.   :0.0000   Min.   :0.0000   Min.   :0.0000000   Min.   :0.000e+00  
+ 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000000   1st Qu.:0.000e+00  
+ Median :0.0000   Median :0.0000   Median :0.0000000   Median :0.000e+00  
+ Mean   :0.1024   Mean   :0.1882   Mean   :0.0001379   Mean   :8.827e-05  
+ 3rd Qu.:0.0000   3rd Qu.:0.0000   3rd Qu.:0.0000000   3rd Qu.:0.000e+00  
+ Max.   :1.0000   Max.   :1.0000   Max.   :1.0000000   Max.   :1.000e+00  
+   VoiceCall1       Duration1        
+ Min.   :0.0000   Min.   :0.0000000  
+ 1st Qu.:0.0000   1st Qu.:0.0000000  
+ Median :1.0000   Median :0.0000000  
+ Mean   :0.7091   Mean   :0.0001379  
+ 3rd Qu.:1.0000   3rd Qu.:0.0000000  
+ Max.   :1.0000   Max.   :1.0000000  
+> "My_hashNum";"Date";"Event";"Contact";"Description";"Direction";"Duration";"hashNum";"weekend1weekday0";"day1night0";"out1in0";"missed1";"packet1";"SMS1";"MMS1";"dataCall1";"VoiceCall1";"Duration1"
+
+"My_hashNum";"Date";"Event";"Contact";"Description";"Direction";"Duration";"hashNum";"weekend1weekday0";"day1night0";"out1in0";"missed1";"packet1";"SMS1";"MMS1";"dataCall1";"VoiceCall1";"Duration1"

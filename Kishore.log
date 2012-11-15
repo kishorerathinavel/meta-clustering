@@ -1,0 +1,458 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.11.20)  22 APR 2012 18:24
+entering extended mode
+ %&-line parsing enabled.
+**\nonstopmode\input Kishore.tex
+(./Kishore.tex (/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+! Undefined control sequence.
+l.10 \ifCLASSINFOpdf
+                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count88
+\FV@InFile=\read1
+\FV@TabBox=\box26
+\c@FancyVerbLine=\count89
+\FV@StepNumber=\count90
+\FV@OutFile=\write3
+) (/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks15
+\ex@=\dimen105
+))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen106
+)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count91
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count92
+\leftroot@=\count93
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count94
+\DOTSCASE@=\count95
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box27
+\strutbox@=\box28
+\big@size=\dimen107
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count96
+\c@MaxMatrixCols=\count97
+\dotsspace@=\muskip10
+\c@parentequation=\count98
+\dspbrk@lvl=\count99
+\tag@help=\toks16
+\row@=\count100
+\column@=\count101
+\maxfields@=\count102
+\andhelp@=\toks17
+\eqnshift@=\dimen108
+\alignsep@=\dimen109
+\tagshift@=\dimen110
+\tagwidth@=\dimen111
+\totwidth@=\dimen112
+\lineht@=\dimen113
+\@envbody=\toks18
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks19
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+))
+(/usr/share/texmf-texlive/tex/latex/preprint/fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip46
+)
+(/usr/share/texmf-texlive/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count103
+\float@exts=\toks20
+\float@box=\box29
+\@float@everytoks=\toks21
+\@floatcapt=\box30
+)
+! Extra \else.
+l.24 \else
+          
+I'm ignoring this; it doesn't match any \if.
+
+! Extra \fi.
+l.34 \fi
+        
+I'm ignoring this; it doesn't match any \if.
+
+(./Kishore.aux)
+\openout1 = `Kishore.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+ (/usr/share/texmf/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count104
+\scratchdimen=\dimen114
+\scratchbox=\box31
+\nofMPsegments=\count105
+\nofMParguments=\count106
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count107
+\MPscratchDim=\dimen115
+\MPnumerator=\count108
+\everyMPtoPDFconversion=\toks23
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 60.
+ (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 60.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+! Undefined control sequence.
+\@author ->\IEEEauthorblockN 
+                             {Kishore Rathinavel}\\ \IEEEauthorblockA {Depar...
+l.60 \maketitle
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \IEEEauthorblockA 
+                                  
+l.60 \maketitle
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.60 \maketitle
+               
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+! Missing { inserted.
+<inserted text> 
+                {
+l.60 \maketitle
+               
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+! Undefined control sequence.
+\@author ..., Gandhinagar} \and \IEEEauthorblockN 
+                                                  {Anusha Lalitha}\\ \IEEEau...
+l.60 \maketitle
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \IEEEauthorblockA 
+                                  
+l.60 \maketitle
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.60 \maketitle
+               
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+! Missing { inserted.
+<inserted text> 
+                {
+l.60 \maketitle
+               
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 76.
+(/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 76.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.95 $d(v,x)=\sqrt{
+                   \displaystyle\frac{\sum_{j=1}^{m}(v_{j}-x_{j})^{2}}{m}}$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.96 \end{math}
+               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.100 $x_
+         {j}=\displaystyle\frac{\sum_{v\in{x}}v_{j}}{Size\;{of\;{cluster\;x}...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+l.100 ...v\in{x}}v_{j}}{Size\;{of\;{cluster\;x}}}}
+                                                  , where \;{1\le{j\le{m}}}$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.101 \end{math}
+                .
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Citation `Eagle2010' on page 1 undefined on input line 108.
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (54.31104pt too wide) in paragraph at lines 208--215
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2] <numbers.png, id=19, 1371.1225pt x 770.88pt>
+File: numbers.png Graphic file (type png)
+ <use numbers.png>
+Overfull \hbox (16.7871pt too wide) in paragraph at lines 291--293
+ [][] 
+ []
+
+[3] <augmented.png, id=23, 1371.1225pt x 770.88pt>
+File: augmented.png Graphic file (type png)
+ <use augmented.png>
+Overfull \hbox (16.7871pt too wide) in paragraph at lines 298--300
+ [][] 
+ []
+
+[4 <./numbers.png (PNG copy)> <./augmented.png (PNG copy)>]
+! Double superscript.
+l.328 rows or phone numbers. The $D^i^
+                                      {th}$ database is given by:
+I treat `x^1^2' essentially like `x^1{}^2'.
+
+<CurrCluster1.jpg, id=27, 481.8pt x 481.8pt>
+File: CurrCluster1.jpg Graphic file (type jpg)
+ <use CurrCluster1.jpg>
+Overfull \hbox (16.7871pt too wide) in paragraph at lines 386--387
+ [][] 
+ []
+
+[5] <CurrCluster20.jpg, id=31, 481.8pt x 481.8pt>
+File: CurrCluster20.jpg Graphic file (type jpg)
+ <use CurrCluster20.jpg>
+Overfull \hbox (16.7871pt too wide) in paragraph at lines 392--393
+ [][] 
+ []
+
+[6 <./CurrCluster1.jpg>] <CurrCluster2000.jpg, id=35, 481.8pt x 481.8pt>
+File: CurrCluster2000.jpg Graphic file (type jpg)
+
+<use CurrCluster2000.jpg>
+Overfull \hbox (16.7871pt too wide) in paragraph at lines 398--399
+ [][] 
+ []
+
+[7 <./CurrCluster20.jpg>] [8 <./CurrCluster2000.jpg>]
+<size.jpg, id=43, 750.805pt x 362.35374pt>
+File: size.jpg Graphic file (type jpg)
+ <use size.jpg>
+Overfull \hbox (16.7871pt too wide) in paragraph at lines 462--464
+ [][] 
+ []
+
+
+Overfull \hbox (22.59898pt too wide) in paragraph at lines 474--487
+ [] 
+ []
+
+
+Overfull \hbox (66.19403pt too wide) in paragraph at lines 490--503
+ [] 
+ []
+
+[9 <./size.jpg>]
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.545 T
+       he above inferences have been summarized in table
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[10] (./Kishore.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 2328 strings out of 493848
+ 29130 string characters out of 1152822
+ 90292 words of memory out of 3000000
+ 5587 multiletter control sequences out of 15000+50000
+ 12741 words of font info for 50 fonts, out of 3000000 for 9000
+ 717 hyphenation exceptions out of 8191
+ 27i,14n,24p,269b,328s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
+onts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi
+7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></
+usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on Kishore.pdf (10 pages, 826136 bytes).
+PDF statistics:
+ 105 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+
